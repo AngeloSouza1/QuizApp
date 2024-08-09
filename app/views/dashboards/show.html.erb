@@ -1,2 +1,22 @@
-<h1>Dashboards#show</h1>
-<p>Find me in app/views/dashboards/show.html.erb</p>
+<!-- app/views/dashboards/show.html.erb -->
+<h1>Dashboard do Usuário</h1>
+
+<p>Bem-vindo, <%= current_user.email %>!</p>
+
+<h2>Quizzes Disponíveis</h2>
+<%= link_to 'Ver Quizzes', quizzes_path, class: 'btn btn-primary' %>
+
+<h2>Seu Progresso</h2>
+<p>
+  <strong>Nível:</strong> <%= current_user.user_level.level %><br>
+  <strong>Pontos:</strong> <%= current_user.user_level.points %>
+</p>
+
+<h2>Últimos Quizzes Respondidos</h2>
+<ul>
+  <% current_user.answers.last(5).each do |answer| %>
+    <li>
+      Quiz: <%= answer.question.quiz.title %> - Pergunta: <%= answer.question.content %> - Resposta: <%= answer.correct? ? 'Correta' : 'Incorreta' %>
+    </li>
+  <% end %>
+</ul>

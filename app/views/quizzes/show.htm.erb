@@ -1,0 +1,22 @@
+<!-- app/views/quizzes/show.html.erb -->
+<h1><%= @quiz.title %></h1>
+
+<p><%= @quiz.description %></p>
+
+<%= form_with(url: answer_quiz_path(@quiz), method: :post, local: true) do %>
+  <% @questions.each do |question| %>
+    <div class="question">
+      <h3><%= question.content %></h3>
+      <% question.answers.each do |answer| %>
+        <div class="answer">
+          <%= radio_button_tag "responses[#{question.id}]", answer.id %>
+          <%= label_tag "responses_#{question.id}_#{answer.id}", answer.content %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= submit_tag 'Enviar Respostas', class: 'btn btn-success' %>
+<% end %>
+
+<%= link_to 'Voltar para Quizzes', quizzes_path, class: 'btn btn-secondary' %>

@@ -1,0 +1,6 @@
+<!-- app/views/admin/questions/new.html.erb -->
+<h1>Nova Pergunta</h1>
+
+<%= render 'form', quiz: @quiz, question: @question %>
+
+<%= link_to 'Voltar', admin_quiz_path(@quiz) %>

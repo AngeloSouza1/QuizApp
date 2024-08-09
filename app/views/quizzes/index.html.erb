@@ -1,0 +1,23 @@
+<!-- app/views/quizzes/index.html.erb -->
+<h1>Quizzes Disponíveis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quizzes.each do |quiz| %>
+      <tr>
+        <td><%= quiz.title %></td>
+        <td><%= quiz.description %></td>
+        <td>
+          <%= link_to 'Responder', quiz_path(quiz), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

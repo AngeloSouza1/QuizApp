@@ -1,2 +1,10 @@
-<h1>Admin::Dashboards#show</h1>
-<p>Find me in app/views/admin/dashboards/show.html.erb</p>
+<!-- app/views/admin/dashboards/show.html.erb -->
+<h1>Dashboard do Admin</h1>
+
+<p>Bem-vindo, <%= current_admin.email %>!</p>
+
+<h2>Gerenciamento</h2>
+<ul>
+  <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path %></li>
+  <li><%= link_to 'Gerenciar Usuários', admin_users_path %></li> <!-- Se houver gerenciamento de usuários -->
+</ul>
