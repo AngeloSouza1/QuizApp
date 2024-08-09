@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   # Namespace admin para centralizar todas as rotas de admin
   namespace :admin do
+    get 'dashboards/show'
     root to: 'dashboards#show', as: 'root'
     resources :quizzes do
       resources :questions do
