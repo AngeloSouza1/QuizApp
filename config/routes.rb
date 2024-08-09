@@ -1,38 +1,31 @@
 Rails.application.routes.draw do
-  get 'dashboards/show'
-  get 'home/index'
+  # Página inicial
+  root 'home#index'
 
-resources :quizzes, only: [:index, :show]
-
+  # Rotas para Dashboards
+  get 'dashboard', to: 'dashboards#show', as: 'user_dashboard'
 
   # Devise routes para administradores e usuários
   devise_for :admins, path: 'admins'
   devise_for :users, path: 'users'
 
-  # Página inicial para todos
-  root 'home#index'
-  
+  # Rotas para quizzes e suas sub-rotas
+  resources :quizzes, only: [:index, :show] do
+    member do
+      post :answer  # Usando post para enviar respostas
+    end
+    resources :questions, only: [:index, :show] do
+      resources :answers, only: [:index, :show]
+    end
+  end
+
   # Namespace admin para centralizar todas as rotas de admin
   namespace :admin do
-    get 'dashboards/show'
     root to: 'dashboards#show', as: 'root'
     resources :quizzes do
       resources :questions do
         resources :answers
       end
-    end
-  end
-
-  # Rotas para usuário comum
-  get 'dashboard', to: 'dashboards#show', as: 'user_dashboard'
-
-  # Rotas para quizzes e suas sub-rotas
-  resources :quizzes do
-    member do
-      get :answer
-    end
-    resources :questions do
-      resources :answers
     end
   end
 end
