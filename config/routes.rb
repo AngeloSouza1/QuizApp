@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'dashboards/show'
   get 'home/index'
+
+resources :quizzes, only: [:index, :show]
+
+
   # Devise routes para administradores e usuários
   devise_for :admins, path: 'admins'
   devise_for :users, path: 'users'

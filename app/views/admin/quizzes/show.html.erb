@@ -7,16 +7,16 @@
 </p>
 
 <h2>Perguntas</h2>
-<%= link_to 'Adicionar Pergunta', new_admin_quiz_question_path(@quiz) %>
+<%= link_to 'Adicionar Pergunta', new_admin_quiz_question_path(@quiz), class: 'btn btn-primary' %>
 
 <ul>
   <% @quiz.questions.each do |question| %>
     <li>
       <%= question.content %> |
-      <%= link_to 'Editar', edit_admin_quiz_question_path(@quiz, question) %> |
-      <%= link_to 'Excluir', admin_quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Tem certeza?' } %>
+      <%= link_to 'Editar', edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-warning btn-sm' %> |
+      <%= link_to 'Excluir', admin_quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-sm' %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'Voltar', admin_quizzes_path %>
+<%= link_to 'Voltar', admin_quizzes_path, class: 'btn btn-secondary' %>
