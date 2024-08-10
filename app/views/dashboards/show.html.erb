@@ -1,5 +1,8 @@
 <!-- app/views/dashboards/show.html.erb -->
-<h1>Dashboard</h1>
+
+<h1>Bem-vindo, <%= current_user.email %>!</h1>
+
+<p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
 
 <h2>Seu Progresso</h2>
 <% if @user_level.present? %>
