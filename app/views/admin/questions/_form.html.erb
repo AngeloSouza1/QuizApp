@@ -1,4 +1,5 @@
 <!-- app/views/admin/questions/_form.html.erb -->
+
 <%= form_with(model: [@quiz, @question], local: true) do |form| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
@@ -18,20 +19,12 @@
 
   <div class="field">
     <%= form.fields_for :answers do |answer_form| %>
-      <div class="nested-fields">
-        <%= answer_form.label :content %>
-        <%= answer_form.text_field :content %>
-
-        <%= answer_form.label :correct %>
-        <%= answer_form.check_box :correct %>
-
-        <%= link_to 'Remover Resposta', '#', class: 'remove_fields' %>
-      </div>
+      <%= render 'answer_fields', f: answer_form %>
     <% end %>
-    <%= link_to_add_fields 'Adicionar Resposta', form, :answers %>
+    <%= link_to_add_association "Adicionar Resposta", form, :answers, partial: 'admin/questions/answer_fields' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Salvar Pergunta" %>
   </div>
 <% end %>
