@@ -9,13 +9,13 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   devise_for :users, path: 'users'
 
-  # Rotas para quizzes e suas sub-rotas
+  # Rotas para quizzes e suas sub-rotas para usuários
   resources :quizzes, only: [:index, :show] do
     member do
       post :answer  # Usando post para enviar respostas
     end
     resources :questions, only: [:index, :show] do
-      resources :answers, only: [:index, :show]
+      # Aqui, normalmente não é necessário ter rotas de `answers` para o usuário comum
     end
   end
 
