@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     member do
       post :answer  # Usando post para enviar respostas
     end
-    resources :questions, only: [:index, :show] do
-      # Aqui, normalmente não é necessário ter rotas de `answers` para o usuário comum
-    end
+    resources :questions, only: [:index, :show]
   end
 
   # Namespace admin para centralizar todas as rotas de admin
@@ -24,7 +22,7 @@ Rails.application.routes.draw do
     root to: 'dashboards#show', as: 'root'
     resources :quizzes do
       resources :questions do
-        resources :answers
+        resources :answers, only: [:create, :update, :destroy]  # Limita as ações de answers no admin
       end
     end
   end

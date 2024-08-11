@@ -12,7 +12,9 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def new
+    @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.build
+    @question.answers.build # Adiciona uma resposta em branco
   end
 
   def create
@@ -25,15 +27,30 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def edit
+    @quiz = Quiz.find(params[:quiz_id])
+    @question = @quiz.questions.find(params[:id])
+    
+    # Inicializa pelo menos uma resposta se nenhuma estiver presente
+    @question.answers.build if @question.answers.empty?
   end
-
+  
   def update
+    @quiz = Quiz.find(params[:quiz_id])
+    @question = @quiz.questions.find(params[:id])
+  
+    params[:question][:answers_attributes].each do |key, answer_params|
+      answer_params[:user_id] = current_admin.id if answer_params[:user_id].blank?
+    end if params[:question][:answers_attributes]
+  
     if @question.update(question_params)
-      redirect_to admin_quiz_questions_path(@quiz), notice: 'Pergunta atualizada com sucesso.'
+      redirect_to admin_quiz_path(@quiz), notice: 'Pergunta atualizada com sucesso.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
+  
+  
+
 
   def destroy
     @question.destroy
@@ -50,7 +67,12 @@ class Admin::QuestionsController < ApplicationController
     @question = @quiz.questions.find(params[:id])
   end
 
-  def question_params
-    params.require(:question).permit(:content, answers_attributes: [:id, :content, :correct, :_destroy])
-  end
+ 
+def question_params
+  params.require(:question).permit(:content, answers_attributes: [:id, :content, :correct, :user_id, :_destroy])
+end
+
+
+
+
 end

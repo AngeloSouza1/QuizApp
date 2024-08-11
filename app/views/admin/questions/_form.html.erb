@@ -1,6 +1,6 @@
 <!-- app/views/admin/questions/_form.html.erb -->
 
-<%= form_with(model: [@quiz, @question], local: true) do |form| %>
+<%= form_with(model: [@quiz, @question], local: true, url: admin_quiz_question_path(@quiz, @question), method: :patch, id: 'question-form') do |form| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h2>
@@ -17,14 +17,15 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.fields_for :answers do |answer_form| %>
-      <%= render 'answer_fields', f: answer_form %>
+  <div id="answers">
+    <% 5.times do |index| %>
+      <%= form.fields_for :answers, @question.answers[index] || @question.answers.build do |answer_form| %>
+        <%= render 'answer_fields', f: answer_form %>
+      <% end %>
     <% end %>
-    <%= link_to_add_association "Adicionar Resposta", form, :answers, partial: 'admin/questions/answer_fields' %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Salvar Pergunta" %>
+    <%= form.submit 'Salvar', class: 'btn btn-primary' %>
   </div>
 <% end %>
