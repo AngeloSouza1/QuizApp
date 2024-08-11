@@ -47,11 +47,18 @@ class QuizzesController < ApplicationController
 
   def answer
     correct_count = 0
-
+  
     params[:responses].each do |question_id, answer_id|
       question = Question.find(question_id)
       selected_answer = question.answers.find(answer_id)
       
+      # Salva a resposta do usuário
+      current_user.answers.create!(
+        question: question,
+        content: selected_answer.content,
+        correct: selected_answer.correct
+      )
+  
       # Verifique se a resposta selecionada está correta
       if selected_answer.correct?
         correct_count += 1
@@ -59,10 +66,10 @@ class QuizzesController < ApplicationController
         current_user.user_level.increment!(:points, 10)
       end
     end
-
+  
     redirect_to quiz_path(@quiz), notice: "#{correct_count} respostas corretas!"
   end
-
+  
 
   private
 

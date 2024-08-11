@@ -6,11 +6,12 @@ class DashboardsController < ApplicationController
     @user_level = current_user.user_level if current_user.respond_to?(:user_level)
 
     # Busca as respostas mais recentes do usuário atual
-        @recent_answers = current_user.answers
-        .joins(:question)
-        .select('DISTINCT ON (questions.quiz_id) answers.*')
-        .order('questions.quiz_id, answers.created_at DESC')
-        .limit(5)
+    @recent_quizzes = current_user.answers.joins(:question)
+    .select('DISTINCT ON (questions.quiz_id) questions.quiz_id, questions.id as question_id, answers.created_at')
+    .order('questions.quiz_id, answers.created_at DESC')
+    .limit(5)
+    .map(&:question)
+    .map(&:quiz)
     # Busca todos os quizzes disponíveis
     @quizzes = Quiz.all
   end
