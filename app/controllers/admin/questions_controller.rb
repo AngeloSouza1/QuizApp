@@ -1,7 +1,7 @@
 # app/controllers/admin/questions_controller.rb
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_quiz, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_quiz
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index

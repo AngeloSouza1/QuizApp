@@ -14,8 +14,9 @@
     <li>
       <%= question.content %> |
       <%= link_to 'Editar', edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-warning btn-sm' %> |
-      <%= link_to 'Excluir', admin_quiz_question_path(@quiz, question), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-sm' %>
-    </li>
+      <%= button_to 'Excluir', admin_quiz_question_path(@quiz, question), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn-link', style: 'background:none; border:none; padding:0; color:#dc3545; text-decoration:underline; cursor:pointer; font-size: 14px;' %>
+
+</li>
   <% end %>
 </ul>
 
