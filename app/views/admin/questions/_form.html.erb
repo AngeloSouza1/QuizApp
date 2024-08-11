@@ -1,6 +1,6 @@
 <!-- app/views/admin/questions/_form.html.erb -->
 
-<%= form_with(model: [@quiz, @question], local: true, url: admin_quiz_question_path(@quiz, @question), method: :patch, id: 'question-form') do |form| %>
+<%= form_with(model: [@quiz, @question], local: true, url: admin_quiz_question_path(@quiz, @question), method: :patch) do |form| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h2>
@@ -20,7 +20,13 @@
   <div id="answers">
     <% 5.times do |index| %>
       <%= form.fields_for :answers, @question.answers[index] || @question.answers.build do |answer_form| %>
-        <%= render 'answer_fields', f: answer_form %>
+        <div class="nested-fields">
+          <%= answer_form.label :content, "Resposta #{index + 1}" %>
+          <%= answer_form.text_field :content %>
+
+          <%= answer_form.label :correct, "Correta?" %>
+          <%= answer_form.check_box :correct %>
+        </div>
       <% end %>
     <% end %>
   </div>
