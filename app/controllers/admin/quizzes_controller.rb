@@ -1,6 +1,7 @@
 # app/controllers/admin/quizzes_controller.rb
 class Admin::QuizzesController < ApplicationController
   before_action :authenticate_admin! # Garante que apenas admins acessem essas ações
+  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   def index
     @quizzes = Quiz.all
@@ -43,6 +44,10 @@ class Admin::QuizzesController < ApplicationController
   end
 
   private
+
+  def set_quiz
+    @quiz = Quiz.find(params[:id])
+  end
 
   def quiz_params
     params.require(:quiz).permit(:title, :description, :difficulty)

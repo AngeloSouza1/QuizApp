@@ -19,7 +19,7 @@
         <td>
           <%= link_to 'Ver', admin_quiz_path(quiz) %> |
           <%= link_to 'Editar', edit_admin_quiz_path(quiz) %> |
-          <%= link_to 'Excluir', admin_quiz_path(quiz), method: :delete, data: { confirm: 'Tem certeza?' } %>
+          <%= button_to 'Excluir', admin_quiz_path(quiz), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn-link', style: 'background:none; border:none; padding:0; color:#007bff; text-decoration:underline; cursor:pointer;' %>
         </td>
       </tr>
     <% end %>
