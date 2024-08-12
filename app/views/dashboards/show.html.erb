@@ -7,11 +7,7 @@
 <p>
   <strong>Nível:</strong> <%= @user_level.classification %><br>
   <strong>Pontos:</strong> <%= @user_level.points %><br>
-  <strong>Acertos:</strong> <%= @total_correct_answers %><br>
-  <strong>Erros:</strong> <%= @total_incorrect_answers %><br>
-  <strong>Porcentagem de Acertos:</strong> <%= @accuracy_percentage.round(2) %>%<br>
-  <strong>Total de Quizzes Respondidos:</strong> <%= @total_quizzes_answered %><br>
-  <strong>Média de Acertos por Quiz:</strong> <%= @average_correct_answers_per_quiz.round(2) %>
+ 
 </p>
 
 <h2>Últimos Quizzes Respondidos</h2>
@@ -19,13 +15,18 @@
   <ul>
     <% @recent_quizzes.each do |quiz| %>
       <li>
-        <%= link_to quiz.title, quiz_path(quiz) %> - Respondido em: <%= Time.now.strftime("%d/%m/%Y %H:%M") %>
+        <%= link_to quiz.title, quiz_path(quiz) %> - Acessado em: <%= Time.now.strftime("%d/%m/%Y" ) %>
       </li>
     <% end %>
   </ul>
 <% else %>
   <p>Você ainda não acessou nenhum quiz.</p>
 <% end %>
+
+
+
+
+
 
 <h2>Ranking de Usuários</h2>
 <% if @user_ranking.present? %>
@@ -43,7 +44,6 @@
         <tr>
           <td><%= index + 1 %></td>
           <td><%= user.email %></td>
-     
           <td><%= user.user_level.points %></td>
           <td><%= user.user_level.classification %></td>
         </tr>

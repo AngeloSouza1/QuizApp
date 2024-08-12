@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # Rotas para Dashboards
   get 'dashboard', to: 'dashboards#show', as: 'user_dashboard'
+ 
 
+  
   # Devise routes para administradores e usuários
   devise_for :admins, path: 'admins'
   devise_for :users, path: 'users'
