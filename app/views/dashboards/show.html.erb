@@ -1,9 +1,16 @@
-<!-- app/views/dashboards/show.html.erb -->
-
 <h1>Bem-vindo, <%= current_user.email %>!</h1>
 
 <p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
 
+<h2>Seu Progresso</h2>
+<% if @user_level.present? %>
+  <p>
+    <strong>Nível:</strong> <%= @user_level.level %><br>
+    <strong>Pontos:</strong> <%= @user_level.points %>
+  </p>
+<% else %>
+  <p>Você ainda não acumulou pontos.</p>
+<% end %>
 
 <h2>Últimos Quizzes Respondidos</h2>
 <% if @recent_quizzes.present? %>
