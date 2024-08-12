@@ -6,27 +6,26 @@
 <% if @user_level.present? %>
   <p>
     <strong>Nível:</strong> <%= @user_level.level %><br>
-    <strong>Pontos:</strong> <%= @user_level.points %>
+    <strong>Pontos:</strong> <%= @user_level.points %><br>
+    <!-- Aqui você pode incluir mais detalhes como porcentagem de acertos, etc. -->
   </p>
 <% else %>
   <p>Você ainda não acumulou pontos.</p>
 <% end %>
+
 
 <h2>Últimos Quizzes Respondidos</h2>
 <% if @recent_quizzes.present? %>
   <ul>
     <% @recent_quizzes.each do |quiz| %>
       <li>
-        <%= link_to quiz.title, quiz_path(quiz) %> - Respondido em: 
-        <%= quiz.questions.joins(:answers).where(answers: { user: current_user }).order('answers.created_at DESC').first&.answers&.first&.created_at&.strftime("%d/%m/%Y %H:%M") || "Data não disponível" %>
+        <%= link_to quiz.title, quiz_path(quiz) %> - Respondido em: <%= quiz.last_answered_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %>
       </li>
     <% end %>
   </ul>
 <% else %>
   <p>Você ainda não respondeu a nenhum quiz.</p>
 <% end %>
-
-
 
 
 

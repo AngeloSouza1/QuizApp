@@ -20,20 +20,30 @@ class QuizzesController < ApplicationController
         question = Question.find(question_id)
         selected_answer = question.answers.find(answer_id)
   
-        # Atualiza a pontuação do usuário
-        if selected_answer.correct?
-          correct_count += 1
-          current_user.user_level.increment!(:points, 10)
+        # Cria uma nova resposta para o usuário
+        user_answer = current_user.answers.create(
+          question: question,
+          content: selected_answer.content,
+          correct: selected_answer.correct
+        )
+  
+        if user_answer.persisted?
+          correct_count += 1 if selected_answer.correct?
+          # Atualiza a pontuação do usuário
+          current_user.user_level.increment!(:points, 10) if selected_answer.correct?
+        else
+          flash[:alert] = "Ocorreu um erro ao salvar suas respostas. Por favor, tente novamente."
+          render :show and return
         end
       end
-  
-      flash[:notice] = "Resposta enviada com sucesso!"
-      redirect_to quiz_path(@quiz)
     else
       flash[:alert] = "Nenhuma resposta foi submetida."
-      render :show
+      render :show and return
     end
+  
+    redirect_to quiz_path(@quiz), notice: "#{correct_count} respostas corretas!"
   end
+  
   
 
   private
