@@ -1,5 +1,6 @@
 # app/controllers/quizzes_controller.rb
 class QuizzesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :answer]
 
   def index
