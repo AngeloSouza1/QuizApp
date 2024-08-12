@@ -22,8 +22,7 @@ class DashboardsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user_level = current_user.user_level
-
+    @user_level = current_user.user_level if current_user.respond_to?(:user_level)
   # Dados de progresso do usuário logad
     @total_correct_answers = current_user.total_correct_answers
     @total_incorrect_answers = current_user.total_incorrect_answers
@@ -32,12 +31,14 @@ class DashboardsController < ApplicationController
     @average_correct_answers_per_quiz = current_user.average_correct_answers_per_quiz
 
     # Últimos quizzes respondidos
-    @recent_quizzes = Quiz.joins(questions: :answers)
-                          .where(answers: { user_id: current_user.id })
-                          .select('quizzes.*, MAX(answers.created_at) as last_answered_at')
-                          .group('quizzes.id')
-                          .order('last_answered_at DESC')
-                          .limit(5)
+    if session[:viewed_quizzes].present?
+      order_clause = session[:viewed_quizzes].each_with_index.map { |id, index| "WHEN #{id} THEN #{index}" }.join(" ")
+      @recent_quizzes = Quiz.where(id: session[:viewed_quizzes])
+                            .order(Arel.sql("CASE id #{order_clause} END DESC"))
+                            .limit(5)
+    else
+      @recent_quizzes = []
+    end
 
     # Quizzes disponíveis
     @quizzes = Quiz.all

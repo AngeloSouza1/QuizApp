@@ -19,7 +19,7 @@
   <ul>
     <% @recent_quizzes.each do |quiz| %>
       <li>
-                    <%= link_to quiz.title, quiz_path(quiz) %> - Respondido em: <%= quiz.last_answered_at.in_time_zone('Brasilia').strftime("%d/%m/%Y %H:%M") %>
+        <%= link_to quiz.title, quiz_path(quiz) %>
       </li>
     <% end %>
   </ul>

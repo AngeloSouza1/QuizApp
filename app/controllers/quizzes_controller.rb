@@ -11,6 +11,9 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @user_level = current_user.user_level
     @recent_answers = current_user.answers.includes(question: :quiz).order(created_at: :desc).limit(5)
+    #Registre a visualização do quiz na sessão
+      session[:viewed_quizzes] ||= []
+      session[:viewed_quizzes] << @quiz.id unless session[:viewed_quizzes].include?(@quiz.id) 
     @questions = @quiz.questions.includes(:answers)
   end
 
