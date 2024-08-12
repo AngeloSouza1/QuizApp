@@ -19,12 +19,12 @@
   <ul>
     <% @recent_quizzes.each do |quiz| %>
       <li>
-        <%= link_to quiz.title, quiz_path(quiz) %>
+        <%= link_to quiz.title, quiz_path(quiz) %> - Respondido em: <%= Time.now.strftime("%d/%m/%Y %H:%M") %>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p>Você ainda não respondeu a nenhum quiz.</p>
+  <p>Você ainda não acessou nenhum quiz.</p>
 <% end %>
 
 <h2>Ranking de Usuários</h2>

@@ -32,10 +32,8 @@ class DashboardsController < ApplicationController
 
     # Últimos quizzes respondidos
     if session[:viewed_quizzes].present?
-      order_clause = session[:viewed_quizzes].each_with_index.map { |id, index| "WHEN #{id} THEN #{index}" }.join(" ")
       @recent_quizzes = Quiz.where(id: session[:viewed_quizzes])
-                            .order(Arel.sql("CASE id #{order_clause} END DESC"))
-                            .limit(5)
+                            .order(Arel.sql("CASE id #{session[:viewed_quizzes].map { |id| "WHEN #{id} THEN #{session[:viewed_quizzes].index(id)}" }.join(' ')} END"))
     else
       @recent_quizzes = []
     end
