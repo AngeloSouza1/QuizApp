@@ -3,7 +3,6 @@
 
 <p>Bem-vindo, <%= current_admin.email %>!</p>
 
-
 <h2>Ranking de Usuários</h2>
 <table>
   <thead>
@@ -12,7 +11,7 @@
       <th>Email</th>
       <th>Pontos</th>
       <th>Nível</th>
-        <th>Classificação</th>
+      <th>Classificação</th>
     </tr>
   </thead>
   <tbody>
@@ -23,20 +22,54 @@
           <td><%= user.email %></td>
           <td><%= user.user_level.points %></td>
           <td><%= user.user_level.level %></td>
-           <td><%= user.user_level.classification %></td>
+          <td><%= user.user_level.classification %></td>
         </tr>
       <% end %>
     <% else %>
       <tr>
-        <td colspan="4">Nenhum usuário encontrado no ranking.</td>
+        <td colspan="5">Nenhum usuário encontrado no ranking.</td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<h2>Progresso dos Usuários</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Acertos</th>
+      <th>Erros</th>
+      <th>Porcentagem de Acertos</th>
+      <th>Total de Quizzes Respondidos</th>
+      <th>Média de Acertos por Quiz</th>
+      <th>Melhor Quiz</th>
+      <th>Acertos no Melhor Quiz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_progress.each do |progress| %>
+      <tr>
+        <td><%= progress[:user].email %></td>
+        <td><%= progress[:correct_answers] %></td>
+        <td><%= progress[:incorrect_answers] %></td>
+        <td><%= progress[:accuracy_percentage] %>%</td>
+        <td><%= progress[:total_quizzes] %></td>
+        <td><%= progress[:average_correct_per_quiz] %></td>
+        <td>
+          <% if progress[:best_quiz] %>
+          <%= progress[:best_quiz].title %>
+        <% else %>
+          Nenhum
+        <% end %>
+      </td>
+      <td><%= progress[:best_quiz_score] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <h2>Gerenciamento</h2>
 <ul>
   <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path %></li>
-
 </ul>

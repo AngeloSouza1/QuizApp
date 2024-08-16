@@ -67,6 +67,15 @@
   <p>Você ainda não acessou nenhum quiz.</p>
 <% end %>
 
+<h2>Melhor Quiz</h2>
+<% if @best_quiz %>
+  <p>
+    <strong>Quiz:</strong> <%= link_to @best_quiz.title, quiz_path(@best_quiz) %><br>
+    <strong>Acertos:</strong> <%= @best_quiz_score %><br>
+  </p>
+<% else %>
+  <p>Você ainda não tem um quiz de destaque.</p>
+<% end %>
 <h2>Ranking dos Usuários</h2>
 <% if @user_ranking.present? %>
   <table>

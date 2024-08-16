@@ -98,15 +98,18 @@ class QuizzesController < ApplicationController
 
   def answer
     correct_count = 0
-
+  
     if params[:responses].present?
       params[:responses].each do |question_id, answer_id|
         question = Question.find(question_id)
         selected_answer = question.answers.find(answer_id)
-
+  
         # Verifica se já existe uma resposta do usuário para essa pergunta
         user_answer = current_user.answers.find_or_initialize_by(question: question)
-
+  
+        # Atualiza o conteúdo da resposta e se está correta
+        user_answer.update(content: selected_answer.content, correct: selected_answer.correct)
+  
         # Atualiza a pontuação do usuário, se a resposta estiver correta
         if selected_answer.correct?
           correct_count += 1
@@ -117,7 +120,7 @@ class QuizzesController < ApplicationController
       flash[:alert] = "Nenhuma resposta foi submetida."
       render :show and return
     end
-
+  
     redirect_to quiz_path(@quiz), notice: "#{correct_count} respostas corretas!"
   end
 
