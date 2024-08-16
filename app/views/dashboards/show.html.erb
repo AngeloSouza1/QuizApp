@@ -1,4 +1,4 @@
-<!-- app/views/dashboards/show.html.erb -->
+<!-- app/views/dashboards/show.html.erb 
 <h1>Bem-vindo, <%= current_user.email %>!</h1>
 
 <p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
@@ -26,6 +26,70 @@
 
 
 
+
+<h2>Quizzes Disponíveis</h2>
+<% if @quizzes.present? %>
+  <ul>
+    <% @quizzes.each do |quiz| %>
+      <li><%= link_to quiz.title, quiz_path(quiz) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Não há quizzes disponíveis no momento.</p>
+<% end %> -->
+
+<!-- app/views/dashboards/show.html.erb -->
+<h1>Bem-vindo, <%= current_user.email %>!</h1>
+
+<p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
+
+<h2>Seu Progresso</h2>
+<p>
+  <strong>Nível:</strong> <%= @user_level.classification %><br>
+  <strong>Pontos:</strong> <%= @user_level.points %><br>
+  <strong>Acertos:</strong> <%= @correct_answers %><br>
+  <strong>Erros:</strong> <%= @incorrect_answers %><br>
+  <strong>Porcentagem de Acertos:</strong> <%= @accuracy_percentage %>%<br>
+  <strong>Total de Quizzes Respondidos:</strong> <%= @total_quizzes %><br>
+  <strong>Média de Acertos por Quiz:</strong> <%= @average_correct_per_quiz %><br>
+</p>
+
+<h2>Últimos Quizzes Respondidos</h2>
+<% if @recent_quizzes.present? %>
+  <ul>
+    <% @recent_quizzes.each do |quiz| %>
+      <li>
+        <%= link_to quiz.title, quiz_path(quiz) %> - Acessado em: <%= quiz.accessed_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %>   
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Você ainda não acessou nenhum quiz.</p>
+<% end %>
+
+<h2>Ranking dos Usuários</h2>
+<% if @user_ranking.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Email</th>
+        <th>Pontos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_ranking.each_with_index do |user, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= user.email %></td>
+          <td><%= user.points %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>O ranking de usuários ainda não está disponível.</p>
+<% end %>
 
 <h2>Quizzes Disponíveis</h2>
 <% if @quizzes.present? %>
