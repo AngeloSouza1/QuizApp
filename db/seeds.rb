@@ -9,6 +9,7 @@ Answer.destroy_all
 admin = Admin.create(email: 'admin@example.com', password: 'password123', password_confirmation: 'password123')
 user = User.create(email: 'user@example.com', password: 'password123', password_confirmation: 'password123')
 
+puts "admin e user criados!"
 
 # Questões e Respostas para cada quiz
 

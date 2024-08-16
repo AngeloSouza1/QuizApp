@@ -27,38 +27,6 @@
 
 
 
-
-<h2>Ranking de Usuários</h2>
-<% if @user_ranking.present? %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Posição</th>
-        <th>Usuário</th>
-        <th>Pontos</th>
-        <th>Nível</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @user_ranking.each_with_index do |user, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= user.email %></td>
-          <td><%= user.user_level.points %></td>
-          <td><%= user.user_level.classification %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>Não há dados suficientes para exibir o ranking.</p>
-<% end %>
-
-
-
-
-
-
 <h2>Quizzes Disponíveis</h2>
 <% if @quizzes.present? %>
   <ul>

@@ -3,6 +3,38 @@
 
 <p>Bem-vindo, <%= current_admin.email %>!</p>
 
+
+<h2>Ranking de Usuários</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Posição</th>
+      <th>Email</th>
+      <th>Pontos</th>
+      <th>Nível</th>
+        <th>Classificação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @ranking.present? %>
+      <% @ranking.each_with_index do |user, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= user.email %></td>
+          <td><%= user.user_level.points %></td>
+          <td><%= user.user_level.level %></td>
+           <td><%= user.user_level.classification %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4">Nenhum usuário encontrado no ranking.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <h2>Gerenciamento</h2>
 <ul>
   <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path %></li>
