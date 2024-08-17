@@ -1,7 +1,9 @@
 <div class="container mt-4">
+ <div class="welcome-message-container">
   <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.email %>!</h1>
   <p class="text-center">Este é o seu dashboard, onde você pode ver os quizzes disponíveis e acompanhar seu progresso.</p>
-
+ </div>
+ <br>
   <div class="row">
     <!-- Card do Progresso -->
     <div class="col-lg-3 col-md-6 mb-4">
@@ -39,7 +41,7 @@
         <div class="card-body">
           <% if @quizzes.present? %>
             <ul class="list-group list-group-flush">
-              <% @quizzes.each do |quiz| %>
+              <% @quizzes.sort_by(&:title).each do |quiz| %>
                 <li class="list-group-item"><%= link_to quiz.title, quiz_path(quiz), class: "text-dark" %></li>
               <% end %>
             </ul>
@@ -49,6 +51,7 @@
         </div>
       </div>
     </div>
+
 
 <!-- Últimos Quizzes Acessados -->
 <div class="col-lg-3 col-md-6 mb-4">
@@ -182,6 +185,11 @@
     font-size: 1.1rem;
     color: #333;
   }
+
+  .welcome-message-container {
+    margin-top: -30px; /* Ajuste esse valor conforme necessário */
+}
+
 </style>
 
 <script>
