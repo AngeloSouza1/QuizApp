@@ -1,12 +1,11 @@
-<!-- app/views/dashboards/show.html.erb -->
 <div class="container mt-4">
   <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.email %>!</h1>
   <p class="text-center">Este é o seu dashboard, onde você pode ver os quizzes disponíveis e acompanhar seu progresso.</p>
 
-  <div class="row"> <!-- Remoção total do espaço horizontal entre as colunas -->
+  <div class="row"> 
     <!-- Card do Progresso -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-sm rounded h-100">
         <div class="card-header bg-primary text-white text-center">
           <h5 class="mb-0">Seu Progresso</h5>
         </div>
@@ -18,13 +17,23 @@
           <p><strong>Porcentagem de Acertos:</strong> <%= @accuracy_percentage %>%</p>
           <p><strong>Total de Quizzes Respondidos:</strong> <%= @total_quizzes %></p>
           <p><strong>Média de Acertos por Quiz:</strong> <%= @average_correct_per_quiz %></p>
-        </div>
+      
+          <h5 class="mb-0 fundo-verde">Melhor Quiz</h5>       
+          <p>
+          <% if @best_quiz %>
+            <h6 class="card-title"><strong>Quiz:</strong> <%= @best_quiz.title %></h6>
+            <p class="card-text"><strong>Acertos:</strong> <%= @best_quiz_score %></p>
+          <% else %>
+            <p class="card-text">Você ainda não tem um quiz de destaque.</p>
+          <% end %>
+        
+        </div>  
       </div>
     </div>
 
     <!-- Quizzes Disponíveis -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-sm rounded h-100">
         <div class="card-header bg-dark text-white text-center">
           <h5 class="mb-0">Quizzes Disponíveis</h5>
         </div>
@@ -44,7 +53,7 @@
 
     <!-- Últimos Quizzes Respondidos -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-sm rounded h-100">
         <div class="card-header bg-secondary text-white text-center">
           <h5 class="mb-0">Últimos Quizzes Respondidos</h5>
         </div>
@@ -67,7 +76,7 @@
 
     <!-- Ranking dos Usuários -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-sm rounded h-100">
         <div class="card-header bg-info text-white text-center">
           <h5 class="mb-0">Ranking dos Usuários</h5>
         </div>
@@ -98,22 +107,6 @@
       </div>
     </div>
 
-    <!-- Card do Melhor Quiz -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm h-50">
-        <div class="card-header bg-success text-white text-center">
-          <h5 class="mb-0">Melhor Quiz</h5>
-        </div>
-        <div class="card-body text-center">
-          <% if @best_quiz %>
-            <h6 class="card-title"><strong>Quiz:</strong> <%= @best_quiz.title %></h6>
-            <p class="card-text"><strong>Acertos:</strong> <%= @best_quiz_score %></p>
-          <% else %>
-            <p class="card-text">Você ainda não tem um quiz de destaque.</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -128,5 +121,17 @@
 
   .container {
     max-width: 1800px;
+    transform: translateY(15%);
+  }
+
+  .card {
+    border-radius: 15px; /* Aumenta o arredondamento das bordas dos cards */
+  }
+
+  .fundo-verde {
+    background-color: green;
+    color: white; 
+    border-radius: 10px; 
+    padding: 10px; 
   }
 </style>
