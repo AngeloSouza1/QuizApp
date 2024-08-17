@@ -1,25 +1,116 @@
-<h1><%= @quiz.title %></h1>
+<div class="container mt-5">
+  <h1 class="text-center text-primary mb-4"><%= @quiz.title %></h1>
+  <p class="text-center text-muted mb-5"><%= @quiz.description %></p>
 
-<p><%= @quiz.description %></p>
+  <% if @questions.present? %>
+    <%= form_with(url: answer_quiz_path(@quiz), method: :post, local: true, id: 'quiz-form') do %>
 
-<% if @questions.present? %>
-  <%= form_with(url: answer_quiz_path(@quiz), method: :post, local: true, id: 'quiz-form') do %>
-    <% @questions.each do |question| %>
-      <div class="question">
-        <h3><%= question.content %></h3>
-        <% question.answers.each do |answer| %>
-          <div class="answer">
-            <%= radio_button_tag "responses[#{question.id}]", answer.id, false, id: "answer_#{question.id}_#{answer.id}" %>
-            <%= label_tag "answer_#{question.id}_#{answer.id}", answer.content %>
-          </div>
-        <% end %>
+      <!-- Carrossel -->
+      <div id="quizCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner">
+
+          <% @questions.each_with_index do |question, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <div class="question text-center">
+                <h3 class="text-center mb-4"><%= "#{index + 1}. #{question.content}" %></h3>
+                <div class="answers mt-4">
+                  <% question.answers.each do |answer| %>
+                    <div class="form-check d-flex align-items-center justify-content-center mb-3">
+                      <div class="form-check-label-container" style="display: inline-block; width: auto;">
+                        <%= radio_button_tag "responses[#{question.id}]", answer.id, false, id: "answer_#{question.id}_#{answer.id}", class: "form-check-input" %>
+                        <%= label_tag "answer_#{question.id}_#{answer.id}", answer.content, class: "form-check-label ml-2", style: "vertical-align: middle;" %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+
+        <!-- Controles do Carrossel -->
+        <a class="carousel-control-prev" href="#quizCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon dark-arrow" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#quizCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon dark-arrow" aria-hidden="true"></span>
+          <span class="sr-only">Próximo</span>
+        </a>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= submit_tag 'Enviar Respostas', class: 'btn btn-success btn-lg', id: 'submit-button', disabled: true %>
+        <%= link_to 'Voltar para Quizzes', quizzes_path, class: 'btn btn-secondary btn-lg ml-2' %>
       </div>
     <% end %>
-
-    <%= submit_tag 'Enviar Respostas', class: 'btn btn-success' %>
+  <% else %>
+    <p class="text-danger text-center">Esse quiz não possui perguntas ainda.</p>
   <% end %>
-<% else %>
-  <p>Esse quiz não possui perguntas ainda.</p>
-<% end %>
+</div>
 
-<%= link_to 'Voltar para Quizzes', quizzes_path, class: 'btn btn-secondary' %>
+<style>
+  .carousel-item {
+    transition: transform 0.5s ease-in-out;
+    height: auto;
+  }
+
+  .form-check {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza as opções */
+  }
+
+  .form-check-input {
+    margin-right: 10px; /* Espaçamento entre o checkbox e o label */
+  }
+
+  .form-check-label-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-check-label {
+    margin-left: 10px; /* Espaçamento entre o checkbox e o texto */
+    text-align: left; /* Alinha o texto à esquerda */
+  }
+
+  .question {
+    margin: 20px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Customização das setas do carrossel */
+  .dark-arrow {
+    background-color: rgba(0, 0, 0, 0.7); /* Cor escura para as setas */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+  }
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(100%);
+  }
+</style>
+
+<script>
+  function checkAllAnswered() {
+    const totalQuestions = document.querySelectorAll('.carousel-item').length;
+    const answeredQuestions = document.querySelectorAll('.form-check-input:checked').length;
+    const submitButton = document.getElementById('submit-button');
+
+    if (answeredQuestions === totalQuestions) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
+    }
+  }
+
+  document.querySelectorAll('.form-check-input').forEach(input => {
+    input.addEventListener('change', checkAllAnswered);
+  });
+</script>
