@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div class="vh-100 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: 5%;">
+<div class="vh-100 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: 0%;">
   <!-- Benefícios do QuizApp -->
   <div class="container mt-3">
     <h2 class="text-center mb-4 text-secondary-dark">Por que Escolher o QuizApp?</h2>
@@ -114,64 +114,53 @@
     </div>
 
    <!-- FAQ -->
-    <div class="container mt-5 mb-5">
-      <h2 class="text-center mb-4 text-secondary-dark">Perguntas Frequentes (FAQ)</h2>
-      <div class="accordion" id="faqAccordion">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Como me cadastro no QuizApp?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
-            <div class="card-body">
-              Para se cadastrar, clique em "Comece Agora", preencha o formulário de inscrição e comece a desafiar seus conhecimentos!
-            </div>
-          </div>
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4 text-secondary-dark">Perguntas Frequentes (FAQ)</h2>
+  <div class="accordion" id="faqAccordion">
+    <div class="card faq-card">
+      <div class="card-header faq-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link faq-btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Como me cadastro no QuizApp?
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+        <div class="card-body">
+          Para se cadastrar, clique em "Comece Agora", preencha o formulário de inscrição e comece a desafiar seus conhecimentos!
         </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                O QuizApp é gratuito?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
-            <div class="card-body">
-              Sim! O QuizApp é completamente gratuito para todos os usuários.
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="card faq-card">
+      <div class="card-header faq-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            O QuizApp é gratuito?
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+        <div class="card-body">
+          Sim! O QuizApp é completamente gratuito para todos os usuários.
         </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Como posso acompanhar meu progresso?
-              </button>
-            </h5>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
-            <div class="card-body">
-              Após se registrar e começar a jogar, você pode acompanhar seu progresso no seu painel de usuário, onde verá suas estatísticas e evolução.
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="card faq-card">
+      <div class="card-header faq-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Como posso acompanhar meu progresso?
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+        <div class="card-body">
+          Após se registrar e começar a jogar, você pode acompanhar seu progresso no seu painel de usuário, onde verá suas estatísticas e evolução.
         </div>
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
+ </div>
 </div>
 
 <style>
@@ -264,4 +253,37 @@
   .text-secondary-dark {
     color: #204a80; /* Cor harmoniosa para títulos secundários */
   }
+
+.faq-card {
+  border: none;
+  background-color: #f8f9fa; /* Cor de fundo suave */
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin-bottom: 10px; /* Margem inferior entre os cards */
+}
+
+.faq-header {
+  background-color: #204a80; /* Cor do cabeçalho da FAQ */
+  color: #ffffff; /* Cor do texto no cabeçalho */
+  border-radius: 15px; /* Bordas arredondadas para o cabeçalho */
+  padding: 10px 20px; /* Espaçamento interno do cabeçalho */
+}
+
+.faq-btn {
+  color: #ffffff; /* Cor do texto do botão */
+  text-decoration: none; /* Remove o sublinhado */
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
+
+.faq-btn:hover {
+  color: #dce3e9; /* Cor do texto ao passar o mouse */
+}
+
+.faq-btn:focus {
+  box-shadow: none; /* Remove o outline ao focar */
+}
+
+
 </style>

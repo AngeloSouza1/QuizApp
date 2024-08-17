@@ -5,7 +5,7 @@
   <div class="row">
     <!-- Card do Progresso -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja seu progresso atual no quiz.')">
+      <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Veja seu progresso atual no quiz.')">
         <div class="card-header bg-primary text-white text-center">
           <h5 class="mb-0">Seu Progresso</h5>
         </div>
@@ -20,19 +20,19 @@
       
           <h5 class="mb-0 fundo-verde">Melhor Quiz</h5>       
           <p>
-          <% if @best_quiz %>
-            <h6 class="card-title"><strong>Quiz:</strong> <%= @best_quiz.title %></h6>
-            <p class="card-text"><strong>Acertos:</strong> <%= @best_quiz_score %></p>
-          <% else %>
-            <p class="card-text">Você ainda não tem um quiz de destaque.</p>
-          <% end %>
+            <% if @best_quiz %>
+              <h6 class="card-title"><strong>Quiz:</strong> <%= @best_quiz.title %></h6>
+              <p class="card-text"><strong>Acertos:</strong> <%= @best_quiz_score %></p>
+            <% else %>
+              <p class="card-text">Você ainda não tem um quiz de destaque.</p>
+            <% end %>
         </div>  
       </div>
     </div>
 
     <!-- Quizzes Disponíveis -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
+      <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
         <div class="card-header bg-dark text-white text-center">
           <h5 class="mb-0">Quizzes Disponíveis</h5>
         </div>
@@ -50,32 +50,33 @@
       </div>
     </div>
 
-    <!-- Últimos Quizzes Respondidos -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja os últimos quizzes que você respondeu.')">
-        <div class="card-header bg-secondary text-white text-center">
-          <h5 class="mb-0">Últimos Quizzes Respondidos</h5>
-        </div>
-        <div class="card-body">
-          <% if @recent_quizzes.present? %>
-            <ul class="list-group list-group-flush">
-              <% @recent_quizzes.each do |quiz| %>
-                <li class="list-group-item">
-                  <strong><%= quiz.title %></strong><br>
-                  <small>Acessado em: <%= quiz.accessed_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %></small>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="text-center">Você ainda não acessou nenhum quiz.</p>
-          <% end %>
-        </div>
-      </div>
+<!-- Últimos Quizzes Acessados -->
+<div class="col-lg-3 col-md-6 mb-4">
+  <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Veja os últimos quizzes que você acessou.')">
+    <div class="card-header bg-secondary text-white text-center">
+      <h5 class="mb-0">Últimos Quizzes Acessados</h5>
     </div>
+    <div class="card-body">
+      <% if @recent_quizzes.present? %>
+        <ul class="list-group list-group-flush">
+          <% @recent_quizzes.each do |quiz| %>
+            <li class="list-group-item">
+              <strong><%= quiz.title %></strong><br>
+              <small>Acessado em: <%= quiz.accessed_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %></small>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center">Você ainda não acessou nenhum quiz.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
     <!-- Ranking dos Usuários -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja o ranking dos usuários no sistema.')">
+      <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Veja o ranking dos usuários no sistema.')">
         <div class="card-header bg-info text-white text-center">
           <h5 class="mb-0">Ranking dos Usuários</h5>
         </div>
@@ -107,38 +108,87 @@
     </div>
   </div>
 
+
+<div class="message-container text-center p-3">
+  <span id="hover-message">Passe o mouse sobre um card para ver mais informações.</span>
+</div>
+
   <!-- Incluir o Rodapé -->
   <%= render 'shared_user/footer' %>
 </div>
 
+
+
 <style>
-  .card-body {
-    overflow-y: auto;
-  }
+.card-body {
+  overflow-y: auto;
+}
 
-  .col-md-6, .col-lg-3 {
-    min-height: 300px;
-  }
+.col-md-6, .col-lg-3 {
+  min-height: 300px;
+}
 
-  .container {
-    max-width: 1800px;
-    transform: translateY(1%);
-  }
+.container {
+  max-width: 1800px;
+  transform: translateY(1%);
+}
 
-  .card {
-    border-radius: 15px; /* Aumenta o arredondamento das bordas dos cards */
-  }
+.card {
+  border-radius: 20px; /* Arredondamento das bordas dos cards */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Suavização na interação */
+}
 
-  .fundo-verde {
-    background-color: green;
-    color: white; 
-    border-radius: 10px; 
-    padding: 10px; 
-  }
+.card-hover:hover {
+  transform: translateY(-10px); /* Elevação do card ao passar o mouse */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra ao passar o mouse */
+}
 
-  .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.fundo-verde {
+  background-color: #28a745;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.text-center h1, .text-center p {
+  margin-bottom: 20px;
+}
+
+.card-header {
+  border-radius: 20px 20px 0 0; /* Bordas arredondadas somente na parte superior */
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.message-container {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    padding: 10px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #333;
   }
 </style>
+
+<script>
+  function updateFooterMessage(message) {
+    var hoverMessageElement = document.getElementById('hover-message');
+    if (hoverMessageElement) {
+      hoverMessageElement.innerText = message;
+    }
+  }
+</script>
