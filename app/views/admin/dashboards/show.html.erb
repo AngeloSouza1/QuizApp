@@ -1,75 +1,95 @@
 <!-- app/views/admin/dashboards/show.html.erb -->
-<h1>Dashboard do Admin</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Dashboard do Admin</h1>
 
-<p>Bem-vindo, <%= current_admin.email %>!</p>
+  <p class="mb-4">Bem-vindo, <%= current_admin.email %>!</p>
 
-<h2>Ranking de Usuários</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Posição</th>
-      <th>Email</th>
-      <th>Pontos</th>
-      <th>Nível</th>
-      <th>Classificação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @ranking.present? %>
-      <% @ranking.each_with_index do |user, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= user.email %></td>
-          <td><%= user.user_level.points %></td>
-          <td><%= user.user_level.level %></td>
-          <td><%= user.user_level.classification %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td colspan="5">Nenhum usuário encontrado no ranking.</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Ranking de Usuários</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Posição</th>
+            <th>Email</th>
+            <th>Pontos</th>
+            <th>Nível</th>
+            <th>Classificação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @ranking.present? %>
+            <% @ranking.each_with_index do |user, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= user.email %></td>
+                <td><%= user.user_level.points %></td>
+                <td><%= user.user_level.level %></td>
+                <td><%= user.user_level.classification %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="5" class="text-center">Nenhum usuário encontrado no ranking.</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<h2>Progresso dos Usuários</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Acertos</th>
-      <th>Erros</th>
-      <th>Porcentagem de Acertos</th>
-      <th>Total de Quizzes Respondidos</th>
-      <th>Média de Acertos por Quiz</th>
-      <th>Melhor Quiz</th>
-      <th>Acertos no Melhor Quiz</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users_progress.each do |progress| %>
-      <tr>
-        <td><%= progress[:user].email %></td>
-        <td><%= progress[:correct_answers] %></td>
-        <td><%= progress[:incorrect_answers] %></td>
-        <td><%= progress[:accuracy_percentage] %>%</td>
-        <td><%= progress[:total_quizzes] %></td>
-        <td><%= progress[:average_correct_per_quiz] %></td>
-        <td>
-          <% if progress[:best_quiz] %>
-          <%= progress[:best_quiz].title %>
-        <% else %>
-          Nenhum
-        <% end %>
-      </td>
-      <td><%= progress[:best_quiz_score] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="card mb-4">
+    <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">Progresso dos Usuários</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Acertos</th>
+            <th>Erros</th>
+            <th>Porcentagem de Acertos</th>
+            <th>Total de Quizzes Respondidos</th>
+            <th>Média de Acertos por Quiz</th>
+            <th>Melhor Quiz</th>
+            <th>Acertos no Melhor Quiz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users_progress.each do |progress| %>
+            <tr>
+              <td><%= progress[:user].email %></td>
+              <td><%= progress[:correct_answers] %></td>
+              <td><%= progress[:incorrect_answers] %></td>
+              <td><%= progress[:accuracy_percentage] %>%</td>
+              <td><%= progress[:total_quizzes] %></td>
+              <td><%= progress[:average_correct_per_quiz] %></td>
+              <td>
+                <% if progress[:best_quiz] %>
+                  <%= progress[:best_quiz].title %>
+                <% else %>
+                  Nenhum
+                <% end %>
+              </td>
+              <td><%= progress[:best_quiz_score] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<h2>Gerenciamento</h2>
-<ul>
-  <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path %></li>
-</ul>
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      <h5 class="mb-0">Gerenciamento</h5>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled">
+        <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path, class: "btn btn-primary" %></li>
+      </ul>
+    </div>
+  </div>
+</div>

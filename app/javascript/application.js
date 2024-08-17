@@ -4,5 +4,6 @@ import "controllers"
 import "jquery"
 
 
+
 console.log("JavaScript carregado e funcionando!");
 

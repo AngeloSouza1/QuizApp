@@ -1,112 +1,132 @@
-<!-- app/views/dashboards/show.html.erb 
-<h1>Bem-vindo, <%= current_user.email %>!</h1>
-
-<p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
-
-<h2>Seu Progresso</h2>
-<p>
-  <strong>Nível:</strong> <%= @user_level.classification %><br>
-  <strong>Pontos:</strong> <%= @user_level.points %><br>
- 
-</p>
-
-<h2>Últimos Quizzes Respondidos</h2>
-<% if @recent_quizzes.present? %>
-  <ul>
-    <% @recent_quizzes.each do |quiz| %>
-      <li>
-        <%= link_to quiz.title, quiz_path(quiz) %> - Acessado em: <%= Time.now.strftime("%d/%m/%Y" ) %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Você ainda não acessou nenhum quiz.</p>
-<% end %>
-
-
-
-
-
-<h2>Quizzes Disponíveis</h2>
-<% if @quizzes.present? %>
-  <ul>
-    <% @quizzes.each do |quiz| %>
-      <li><%= link_to quiz.title, quiz_path(quiz) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Não há quizzes disponíveis no momento.</p>
-<% end %> -->
-
 <!-- app/views/dashboards/show.html.erb -->
-<h1>Bem-vindo, <%= current_user.email %>!</h1>
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.email %>!</h1>
+  <p class="text-center">Este é o seu dashboard, onde você pode ver os quizzes disponíveis e acompanhar seu progresso.</p>
 
-<p>Este é o seu dashboard, onde você pode ver os quizzes disponíveis e seu progresso.</p>
+  <div class="row"> <!-- Remoção total do espaço horizontal entre as colunas -->
+    <!-- Card do Progresso -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white text-center">
+          <h5 class="mb-0">Seu Progresso</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Nível:</strong> <%= @user_level.classification %></p>
+          <p><strong>Pontos:</strong> <%= @user_level.points %></p>
+          <p><strong>Acertos:</strong> <%= @correct_answers %></p>
+          <p><strong>Erros:</strong> <%= @incorrect_answers %></p>
+          <p><strong>Porcentagem de Acertos:</strong> <%= @accuracy_percentage %>%</p>
+          <p><strong>Total de Quizzes Respondidos:</strong> <%= @total_quizzes %></p>
+          <p><strong>Média de Acertos por Quiz:</strong> <%= @average_correct_per_quiz %></p>
+        </div>
+      </div>
+    </div>
 
-<h2>Seu Progresso</h2>
-<p>
-  <strong>Nível:</strong> <%= @user_level.classification %><br>
-  <strong>Pontos:</strong> <%= @user_level.points %><br>
-  <strong>Acertos:</strong> <%= @correct_answers %><br>
-  <strong>Erros:</strong> <%= @incorrect_answers %><br>
-  <strong>Porcentagem de Acertos:</strong> <%= @accuracy_percentage %>%<br>
-  <strong>Total de Quizzes Respondidos:</strong> <%= @total_quizzes %><br>
-  <strong>Média de Acertos por Quiz:</strong> <%= @average_correct_per_quiz %><br>
-</p>
+    <!-- Quizzes Disponíveis -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-dark text-white text-center">
+          <h5 class="mb-0">Quizzes Disponíveis</h5>
+        </div>
+        <div class="card-body">
+          <% if @quizzes.present? %>
+            <ul class="list-group list-group-flush">
+              <% @quizzes.each do |quiz| %>
+                <li class="list-group-item"><%= link_to quiz.title, quiz_path(quiz), class: "text-dark" %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-center">Não há quizzes disponíveis no momento.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<h2>Últimos Quizzes Respondidos</h2>
-<% if @recent_quizzes.present? %>
-  <ul>
-    <% @recent_quizzes.each do |quiz| %>
-      <li>
-        <%= link_to quiz.title, quiz_path(quiz) %> - Acessado em: <%= quiz.accessed_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %>   
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Você ainda não acessou nenhum quiz.</p>
-<% end %>
+    <!-- Últimos Quizzes Respondidos -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-secondary text-white text-center">
+          <h5 class="mb-0">Últimos Quizzes Respondidos</h5>
+        </div>
+        <div class="card-body">
+          <% if @recent_quizzes.present? %>
+            <ul class="list-group list-group-flush">
+              <% @recent_quizzes.each do |quiz| %>
+                <li class="list-group-item">
+                  <strong><%= quiz.title %></strong><br>
+                  <small>Acessado em: <%= quiz.accessed_at.in_time_zone('America/Sao_Paulo').strftime("%d/%m/%Y %H:%M") %></small>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-center">Você ainda não acessou nenhum quiz.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<h2>Melhor Quiz</h2>
-<% if @best_quiz %>
-  <p>
-    <strong>Quiz:</strong> <%= link_to @best_quiz.title, quiz_path(@best_quiz) %><br>
-    <strong>Acertos:</strong> <%= @best_quiz_score %><br>
-  </p>
-<% else %>
-  <p>Você ainda não tem um quiz de destaque.</p>
-<% end %>
-<h2>Ranking dos Usuários</h2>
-<% if @user_ranking.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Posição</th>
-        <th>Email</th>
-        <th>Pontos</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @user_ranking.each_with_index do |user, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= user.email %></td>
-          <td><%= user.points %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>O ranking de usuários ainda não está disponível.</p>
-<% end %>
+    <!-- Ranking dos Usuários -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-info text-white text-center">
+          <h5 class="mb-0">Ranking dos Usuários</h5>
+        </div>
+        <div class="card-body">
+          <% if @user_ranking.present? %>
+            <table class="table table-striped table-sm text-center">
+              <thead>
+                <tr>
+                  <th>Posição</th>
+                  <th>Email</th>
+                  <th>Pontos</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user_ranking.each_with_index do |user, index| %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.points %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p class="text-center">O ranking de usuários ainda não está disponível.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-<h2>Quizzes Disponíveis</h2>
-<% if @quizzes.present? %>
-  <ul>
-    <% @quizzes.each do |quiz| %>
-      <li><%= link_to quiz.title, quiz_path(quiz) %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>Não há quizzes disponíveis no momento.</p>
-<% end %>
+    <!-- Card do Melhor Quiz -->
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card shadow-sm h-50">
+        <div class="card-header bg-success text-white text-center">
+          <h5 class="mb-0">Melhor Quiz</h5>
+        </div>
+        <div class="card-body text-center">
+          <% if @best_quiz %>
+            <h6 class="card-title"><strong>Quiz:</strong> <%= @best_quiz.title %></h6>
+            <p class="card-text"><strong>Acertos:</strong> <%= @best_quiz_score %></p>
+          <% else %>
+            <p class="card-text">Você ainda não tem um quiz de destaque.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-body {
+    overflow-y: auto;
+  }
+
+  .col-md-6, .col-lg-3 {
+    min-height: 300px;
+  }
+
+  .container {
+    max-width: 1800px;
+  }
+</style>
