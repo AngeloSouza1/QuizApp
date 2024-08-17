@@ -2,10 +2,10 @@
   <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.email %>!</h1>
   <p class="text-center">Este é o seu dashboard, onde você pode ver os quizzes disponíveis e acompanhar seu progresso.</p>
 
-  <div class="row"> 
+  <div class="row">
     <!-- Card do Progresso -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100">
+      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja seu progresso atual no quiz.')">
         <div class="card-header bg-primary text-white text-center">
           <h5 class="mb-0">Seu Progresso</h5>
         </div>
@@ -26,14 +26,13 @@
           <% else %>
             <p class="card-text">Você ainda não tem um quiz de destaque.</p>
           <% end %>
-        
         </div>  
       </div>
     </div>
 
     <!-- Quizzes Disponíveis -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100">
+      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
         <div class="card-header bg-dark text-white text-center">
           <h5 class="mb-0">Quizzes Disponíveis</h5>
         </div>
@@ -53,7 +52,7 @@
 
     <!-- Últimos Quizzes Respondidos -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100">
+      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja os últimos quizzes que você respondeu.')">
         <div class="card-header bg-secondary text-white text-center">
           <h5 class="mb-0">Últimos Quizzes Respondidos</h5>
         </div>
@@ -76,7 +75,7 @@
 
     <!-- Ranking dos Usuários -->
     <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100">
+      <div class="card shadow-sm rounded h-100" onmouseover="updateFooterMessage('Veja o ranking dos usuários no sistema.')">
         <div class="card-header bg-info text-white text-center">
           <h5 class="mb-0">Ranking dos Usuários</h5>
         </div>
@@ -106,8 +105,10 @@
         </div>
       </div>
     </div>
-
   </div>
+
+  <!-- Incluir o Rodapé -->
+  <%= render 'shared_user/footer' %>
 </div>
 
 <style>
@@ -121,7 +122,7 @@
 
   .container {
     max-width: 1800px;
-    transform: translateY(15%);
+    transform: translateY(1%);
   }
 
   .card {
@@ -133,5 +134,11 @@
     color: white; 
     border-radius: 10px; 
     padding: 10px; 
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
 </style>
