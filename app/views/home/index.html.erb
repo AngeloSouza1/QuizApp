@@ -2,28 +2,27 @@
 
 <div class="vh-1 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: 10px;">
   <div class="text-center w-100 px-3">
-    <div class="jumbotron bg-primary-light text-white py-5 px-4 shadow-sm rounded-extra">
-      <%= image_tag 'logo.png', alt: 'QuizApp Logo', class: 'mb-4 logo', width: '150', height: '150' %>
-      <h1 class="display-4">Bem-vindo ao QuizApp!</h1>
-      <p class="lead mt-3">Teste seus conhecimentos em diversos tópicos e desafie seus amigos!</p>
-      <hr class="my-4 bg-light">
-      <p class="mb-4">Nossa aplicação oferece quizzes divertidos e educativos para você se desafiar. A cada resposta correta, você acumula pontos e avança de nível. Cadastre-se agora e comece a jogar!</p>
+    <div class="jumbotron bg-primary-light text-white py-5 px-4 shadow-sm rounded-extra animate-jumbotron">
+      <%= image_tag 'logo.png', alt: 'QuizApp Logo', class: 'mb-4 logo animated-logo', width: '150', height: '150' %>
+      <h1 class="display-4 animate-title">Bem-vindo ao QuizApp!</h1>
+      <p class="lead mt-3 animate-title">Teste seus conhecimentos em diversos tópicos e desafie seus amigos!</p>
+      <hr class="my-4 bg-light animate-jumbotron">
+      <p class="mb-4 animate-title">Nossa aplicação oferece quizzes divertidos e educativos para você se desafiar. A cada resposta correta, você acumula pontos e avança de nível. Cadastre-se agora e comece a jogar!</p>
       
       <div class="rounded-extra"> 
-        <%= link_to 'Comece Agora', new_user_registration_path, class: 'btn btn-lg btn-custom text-white font-weight-bold shadow' %>
+        <%= link_to 'Comece Agora', new_user_registration_path, class: 'btn btn-lg btn-custom text-white font-weight-bold shadow animate-btn' %>
       </div>
       
       <% if !user_signed_in? %>
-        <p class="mt-4 text-light">Já tem uma conta? <%= link_to 'Faça login aqui', new_user_session_path, class: 'text-white font-weight-bold' %></p>
+        <p class="mt-4 text-light animate-link">Já tem uma conta? <%= link_to 'Faça login aqui', new_user_session_path, class: 'text-white font-weight-bold animate-link' %></p>
       <% end %>
     </div>
 
-
     <div class="vh-1 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: -2%;">
-      <h2 class="text-center mb-4 text-secondary-dark">Funcionalidades do QuizApp</h2>
+      <h2 class="text-center mb-4 text-secondary-dark animate-title">Funcionalidades do QuizApp</h2>
       <div class="row justify-content-center">
         <div class="col-md-6 col-lg-3 mb-2">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
             <div class="card-body text-center">
               <h5 class="card-title text-primary">Desafie-se</h5>
               <p class="card-text">Quizzes em diversas categorias para testar seus conhecimentos.</p>
@@ -31,7 +30,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-2">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
             <div class="card-body text-center">
               <h5 class="card-title text-primary">Ganhe Pontos</h5>
               <p class="card-text">Acumule pontos e suba de nível a cada resposta correta.</p>
@@ -39,7 +38,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-2">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
             <div class="card-body text-center">
               <h5 class="card-title text-primary">Acompanhe seu Progresso</h5>
               <p class="card-text">Veja sua posição no ranking e acompanhe sua evolução.</p>
@@ -47,7 +46,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3 mb-2">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
             <div class="card-body text-center">
               <h5 class="card-title text-primary">Administração Fácil</h5>
               <p class="card-text">Crie e gerencie quizzes com facilidade.</p>
@@ -59,14 +58,12 @@
   </div>
 </div>
 
-
 <div class="vh-100 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: 0%;">
-  <!-- Benefícios do QuizApp -->
   <div class="container mt-3">
-    <h2 class="text-center mb-4 text-secondary-dark">Por que Escolher o QuizApp?</h2>
+    <h2 class="text-center mb-4 text-secondary-dark animate-title">Por que Escolher o QuizApp?</h2>
     <div class="row justify-content-center">
       <div class="col-md-4 mb-2">
-        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">Aprendizado Divertido</h5>
             <p class="card-text">Aprenda de forma divertida com quizzes interativos e educativos.</p>
@@ -74,7 +71,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-2">
-        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">Competição Saudável</h5>
             <p class="card-text">Desafie seus amigos e veja quem é o melhor em diversas categorias.</p>
@@ -82,7 +79,7 @@
         </div>
       </div>
       <div class="col-md-4 mb-2">
-        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
+        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">Fácil de Usar</h5>
             <p class="card-text">Interface intuitiva e fácil de usar para todas as idades.</p>
@@ -92,97 +89,95 @@
     </div>
   </div>
 
- <!-- Depoimentos -->
-    <div class="container mt-5">
-      <h2 class="text-center mb-4 text-secondary-dark">O que nossos usuários dizem</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-6 mb-4">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
-            <div class="card-body text-center">
-              <p class="card-text"><em>"O QuizApp tornou o aprendizado muito mais divertido para mim e meus amigos! Adoramos competir uns com os outros."</em></p>
-              <footer class="blockquote-footer">Maria Silva</footer>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
-            <div class="card-body text-center">
-              <p class="card-text"><em>"Nunca pensei que aprender pudesse ser tão envolvente. O QuizApp me ajuda a estudar enquanto me divirto."</em></p>
-              <footer class="blockquote-footer">João Pereira</footer>
-            </div>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 text-secondary-dark animate-title">O que nossos usuários dizem</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
+          <div class="card-body text-center">
+            <p class="card-text"><em>"O QuizApp tornou o aprendizado muito mais divertido para mim e meus amigos! Adoramos competir uns com os outros."</em></p>
+            <footer class="blockquote-footer">Maria Silva</footer>
           </div>
         </div>
       </div>
-    </div>
-
-   <!-- FAQ -->
-<div class="container mt-5 mb-5">
-  <h2 class="text-center mb-4 text-secondary-dark">Perguntas Frequentes (FAQ)</h2>
-  <div class="accordion" id="faqAccordion">
-    <div class="card faq-card">
-      <div class="card-header faq-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link faq-btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Como me cadastro no QuizApp?
-          </button>
-        </h5>
-      </div>
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
-        <div class="card-body">
-          Para se cadastrar, clique em "Comece Agora", preencha o formulário de inscrição e comece a desafiar seus conhecimentos!
-        </div>
-      </div>
-    </div>
-    <div class="card faq-card">
-      <div class="card-header faq-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            O QuizApp é gratuito?
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
-        <div class="card-body">
-          Sim! O QuizApp é completamente gratuito para todos os usuários.
-        </div>
-      </div>
-    </div>
-    <div class="card faq-card">
-      <div class="card-header faq-header" id="headingThree">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Como posso acompanhar meu progresso?
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
-        <div class="card-body">
-          Após se registrar e começar a jogar, você pode acompanhar seu progresso no seu painel de usuário, onde verá suas estatísticas e evolução.
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg h-100 border-0 rounded-extra card-custom animate-card">
+          <div class="card-body text-center">
+            <p class="card-text"><em>"Nunca pensei que aprender pudesse ser tão envolvente. O QuizApp me ajuda a estudar enquanto me divirto."</em></p>
+            <footer class="blockquote-footer">João Pereira</footer>
+          </div>
         </div>
       </div>
     </div>
   </div>
- </div>
+
+  <div class="container mt-5 mb-5">
+    <h2 class="text-center mb-4 text-secondary-dark animate-title">Perguntas Frequentes (FAQ)</h2>
+    <div class="accordion" id="faqAccordion">
+      <div class="card faq-card animate-card">
+        <div class="card-header faq-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link faq-btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Como me cadastro no QuizApp?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#faqAccordion">
+          <div class="card-body">
+            Para se cadastrar, clique em "Comece Agora", preencha o formulário de inscrição e comece a desafiar seus conhecimentos!
+          </div>
+        </div>
+      </div>
+      <div class="card faq-card animate-card">
+        <div class="card-header faq-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              O QuizApp é gratuito?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+          <div class="card-body">
+            Sim! O QuizApp é completamente gratuito para todos os usuários.
+          </div>
+        </div>
+      </div>
+      <div class="card faq-card animate-card">
+        <div class="card-header faq-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed faq-btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Como posso acompanhar meu progresso?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqAccordion">
+          <div class="card-body">
+            Após se registrar e começar a jogar, você pode acompanhar seu progresso no seu painel de usuário, onde verá suas estatísticas e evolução.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
   .bg-custom {
-    background-color: #dce3e9; /* Cor de fundo suavemente escura e harmoniosa */
+    background-color: #dce3e9;
     width: 100%;
     padding-left: 5%;  
     padding-right: 5%; 
   }
 
   .bg-primary-light {
-    background-color: #3568b5; /* Azul suave e harmônico */
-    color: #ffffff; 
-    border-radius: 30px; 
+    background-color: #3568b5;
+    color: #ffffff;
+    border-radius: 30px;
   }
 
   .btn-custom {
     border-radius: 50px;
     border: 2px solid #ffffff;
-    background-color: #2b5b9e; /* Escurecer o botão com um tom harmônico */
+    background-color: #2b5b9e;
     padding: 15px 30px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     position: relative;
@@ -207,27 +202,27 @@
   }
 
   .btn-custom:hover {
-    background-color: #204a80; 
+    background-color: #204a80;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
   }
 
   .card {
-    background-color: #ffffff; 
-    border-radius: 30px; 
+    background-color: #ffffff;
+    border-radius: 30px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    border: 1px solid #204a80; /* Bordas azul harmônico para combinar com o jumbotron */
+    border: 1px solid #204a80;
   }
 
   .card-custom:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-color: #3568b5; 
+    border-color: #3568b5;
     transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
 
   .rounded-extra {
-    border-radius: 30px; 
+    border-radius: 30px;
   }
 
   .card-body {
@@ -253,39 +248,77 @@
   }
 
   .text-secondary-dark {
-    color: #204a80; /* Cor harmoniosa para títulos secundários */
+    color: #204a80;
   }
 
-.faq-card {
-  border: none;
-  background-color: #f8f9fa; /* Cor de fundo suave */
-  border-radius: 15px; /* Bordas arredondadas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  margin-bottom: 10px; /* Margem inferior entre os cards */
-}
+  .animate-btn, .animate-title, .animated-logo, .animate-jumbotron {
+    animation: fadeInUp 1s ease forwards;
+  }
 
-.faq-header {
-  background-color: #204a80; /* Cor do cabeçalho da FAQ */
-  color: #ffffff; /* Cor do texto no cabeçalho */
-  border-radius: 15px; /* Bordas arredondadas para o cabeçalho */
-  padding: 10px 20px; /* Espaçamento interno do cabeçalho */
-}
+  .animate-title {
+    animation-delay: 0.5s;
+  }
 
-.faq-btn {
-  color: #ffffff; /* Cor do texto do botão */
-  text-decoration: none; /* Remove o sublinhado */
-  font-weight: bold;
-  width: 100%;
-  text-align: left;
-}
+  .animate-btn {
+    animation-delay: 1s;
+  }
 
-.faq-btn:hover {
-  color: #dce3e9; /* Cor do texto ao passar o mouse */
-}
+  .animated-logo {
+    animation-delay: 0.2s;
+  }
 
-.faq-btn:focus {
-  box-shadow: none; /* Remove o outline ao focar */
-}
+  .animate-jumbotron {
+    animation-delay: 0.8s;
+  }
 
+  .animate-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
+  .animate-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .faq-card {
+    border: none;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+
+  .faq-header {
+    background-color: #204a80;
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 10px 20px;
+  }
+
+  .faq-btn {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+    text-align: left;
+  }
+
+  .faq-btn:hover {
+    color: #dce3e9;
+  }
+
+  .faq-btn:focus {
+    box-shadow: none;
+  }
 </style>
