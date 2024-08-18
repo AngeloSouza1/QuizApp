@@ -1,27 +1,123 @@
 <!-- app/views/admin/quizzes/index.html.erb -->
-<h1>Gerenciamento de Quizzes</h1>
+<br>
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-dark-blue text-white d-flex align-items-center">
+    <i class="fas fa-chart-line mr-2"></i>
+    <h5 class="mb-0">Gerenciamento de Quizzes</h5>
+  </div>
 
-<%= link_to 'Novo Quiz', new_admin_quiz_path, class: 'btn btn-primary' %>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <%= link_to new_admin_quiz_path, class: 'btn bg-dark-blue text-white mb-3' do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Descrição</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @quizzes.each do |quiz| %>
-      <tr>
-        <td><%= quiz.title %></td>
-        <td><%= quiz.description %></td>
-        <td>
-          <%= link_to 'Ver', admin_quiz_path(quiz) %> |
-          <%= link_to 'Editar', edit_admin_quiz_path(quiz) %> |
-          <%= button_to 'Excluir', admin_quiz_path(quiz), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn-link', style: 'background:none; border:none; padding:0; color:#007bff; text-decoration:underline; cursor:pointer;' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="table-responsive">
+        <table class="table table-hover" style="width: 100%;">
+          <thead class="thead-light">
+            <tr>
+              <th>Título</th>
+              <th>Descrição</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @quizzes.each_with_index do |quiz, index| %>
+              <tr class="<%= index.even? ? 'bg-light' : '' %>">
+                <td><%= quiz.title %></td>
+                <td><%= quiz.description %></td>
+                <td class="text-center">
+                  <div class="d-flex justify-content-center">
+                    <%= link_to admin_quiz_path(quiz), class: 'btn btn-link p-0 align-middle' do %>
+                      <i class="fas fa-eye"></i>
+                    <% end %>
+                    <%= link_to edit_admin_quiz_path(quiz), class: 'btn btn-link p-0 ml-2 align-middle' do %>
+                      <i class="fas fa-edit"></i>
+                    <% end %>
+                    <%= button_to admin_quiz_path(quiz), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn btn-link p-0 ml-2 align-middle' do %>
+                      <i class="fas fa-trash-alt"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container-fluid {
+    max-width: 1200px;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .btn-link {
+    color: #007bff;
+  }
+
+  .btn-link:hover {
+    text-decoration: none;
+    color: #0056b3;
+  }
+
+  .table thead th {
+    border-bottom: 2px solid #ddd;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #ffffff;
+    background-color: #204a80;
+    border-radius: 8px;
+    padding: 10px 20px;
+  }
+
+  .thead-light th {
+    font-weight: 600;
+    color: #495057;
+  }
+
+  .bg-light {
+    background-color: #f8f9fa;
+  }
+
+  .btn-primary {
+    border-radius: 30px;
+  }
+
+  .bg-dark-blue {
+    background-color: #204a80;
+  }
+
+  .table tbody td.text-center {
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .table tbody td .btn-link {
+    display: inline-block;
+    width: 32px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .align-middle {
+    vertical-align: middle;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+</style>
