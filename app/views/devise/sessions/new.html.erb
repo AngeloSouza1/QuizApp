@@ -1,9 +1,10 @@
-<div class="devise-container d-flex justify-content-center align-items-center">
+<div class="devise-container d-flex justify-content-center align-items-center flex-column">
+  <%= image_tag 'logo.png', alt: 'QuizApp Logo', class: 'mb-4 logo', width: '150', height: '150' %>
+
   <div class="devise-card shadow-lg p-4 border-0 rounded-extra card-custom">
     <h2 class="text-center text-primary-dark mb-4">
-    <i class="fas fa-sign-in-alt mr-2"></i> Acessar
+      <i class="fas fa-sign-in-alt mr-2"></i> Acessar
     </h2>
-
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.label :email, "E-mail", class: "text-secondary-dark" %>
@@ -42,6 +43,7 @@
     margin-top: 10%;
     border-radius: 30px; /* Cantos arredondados */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    flex-direction: column; /* Alinhar imagem e cartão verticalmente */
   }
 
   .devise-card {
@@ -49,6 +51,8 @@
     border-radius: 30px; 
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     border: 1px solid #204a80; /* Bordas azul harmônico para combinar com o jumbotron */
+    width: 100%;
+    max-width: 400px; /* Controlar a largura do cartão */
   }
 
   .form-control {
@@ -79,10 +83,6 @@
     transform: translateY(0);
   }
 
-  .btn-block {
-    border-radius: 30px;
-  }
-
   h2 {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -97,14 +97,11 @@
     margin-bottom: 15px;
   }
 
-  .btn-primary {
-    background-color: #2b5b9e;
-    border-color: #2b5b9e;
-    padding: 8px 16px;
-  }
-
   .text-secondary-dark {
     color: #495057;
   }
-</style>
 
+  .logo {
+    max-width: 150px;
+  }
+</style>

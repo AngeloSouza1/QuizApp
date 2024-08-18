@@ -1,25 +1,99 @@
-<h2>Change your password</h2>
+<div class="devise-container d-flex justify-content-center align-items-center">
+  <div class="devise-card shadow-lg p-4 border-0 rounded-extra card-custom">
+    <h2 class="text-center text-primary-dark mb-4">
+      <i class="fas fa-lock"></i> Alterar sua senha
+    </h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <div class="form-group">
+        <%= f.label :password, "Nova senha", class: "text-secondary-dark" %>
+        <% if @minimum_password_length %>
+          <em class="text-muted" style="font-size: 0.9rem;">(<%= @minimum_password_length %> caracteres no mínimo)</em><br />
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control rounded-extra", required: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirme sua nova senha", class: "text-secondary-dark" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control rounded-extra", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Alterar minha senha", class: "btn btn-custom btn-sm btn-block text-white font-weight-bold" %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="text-center mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+<style>
+  .devise-container {
+    min-height: 75vh;
+    background-color: #3568b5; /* Cor de fundo harmoniosa */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    margin-top: 10%;
+    border-radius: 30px; /* Cantos arredondados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  }
 
-<%= render "devise/shared/links" %>
+  .devise-card {
+    background-color: #ffffff; 
+    border-radius: 30px; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid #204a80; /* Bordas azul harmônico */
+  }
+
+  .form-control {
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .btn-custom {
+    border-radius: 30px;
+    background-color: #2b5b9e;
+    padding: 8px 16px;
+    font-size: 1.2rem;
+  }
+
+  .btn-custom:hover {
+    background-color: #1e3e70;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .btn-custom:active {
+    background-color: #16365a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+  }
+
+  .btn-block {
+    border-radius: 30px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #204a80;
+  }
+
+  .form-check-label {
+    color: #495057;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .text-secondary-dark {
+    color: #495057;
+  }
+</style>

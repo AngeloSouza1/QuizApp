@@ -1,16 +1,18 @@
 <!-- app/views/admin/dashboards/show.html.erb -->
 <div class="container mt-5">
-  <h1 class="mb-4">Dashboard do Admin</h1>
+  <h1 class="mb-4 text-primary">Painel de Administração</h1>
 
-  <p class="mb-4">Bem-vindo, <%= current_admin.email %>!</p>
+  <p class="mb-4">Bem-vindo, <strong><%= current_admin.email %></strong>!</p>
 
-  <div class="card mb-4">
-    <div class="card-header bg-primary text-white">
+  <!-- Card de Ranking de Usuários -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white d-flex align-items-center">
+      <i class="fas fa-trophy mr-2"></i>
       <h5 class="mb-0">Ranking de Usuários</h5>
     </div>
     <div class="card-body">
-      <table class="table table-striped">
-        <thead>
+      <table class="table table-hover">
+        <thead class="thead-light">
           <tr>
             <th>Posição</th>
             <th>Email</th>
@@ -23,7 +25,7 @@
           <% if @ranking.present? %>
             <% @ranking.each_with_index do |user, index| %>
               <tr>
-                <td><%= index + 1 %></td>
+                <td><strong><%= index + 1 %></strong></td>
                 <td><%= user.email %></td>
                 <td><%= user.user_level.points %></td>
                 <td><%= user.user_level.level %></td>
@@ -32,7 +34,7 @@
             <% end %>
           <% else %>
             <tr>
-              <td colspan="5" class="text-center">Nenhum usuário encontrado no ranking.</td>
+              <td colspan="5" class="text-center text-muted">Nenhum usuário encontrado no ranking.</td>
             </tr>
           <% end %>
         </tbody>
@@ -40,13 +42,15 @@
     </div>
   </div>
 
-  <div class="card mb-4">
-    <div class="card-header bg-secondary text-white">
+  <!-- Card de Progresso dos Usuários -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-secondary text-white d-flex align-items-center">
+      <i class="fas fa-chart-line mr-2"></i>
       <h5 class="mb-0">Progresso dos Usuários</h5>
     </div>
     <div class="card-body">
-      <table class="table table-striped">
-        <thead>
+      <table class="table table-hover">
+        <thead class="thead-light">
           <tr>
             <th>Email</th>
             <th>Acertos</th>
@@ -59,22 +63,28 @@
           </tr>
         </thead>
         <tbody>
-          <% @users_progress.each do |progress| %>
+          <% if @users_progress.present? %>
+            <% @users_progress.each do |progress| %>
+              <tr>
+                <td><%= progress[:user].email %></td>
+                <td><%= progress[:correct_answers] %></td>
+                <td><%= progress[:incorrect_answers] %></td>
+                <td><%= progress[:accuracy_percentage] %>%</td>
+                <td><%= progress[:total_quizzes] %></td>
+                <td><%= progress[:average_correct_per_quiz] %></td>
+                <td>
+                  <% if progress[:best_quiz] %>
+                    <%= progress[:best_quiz].title %>
+                  <% else %>
+                    Nenhum
+                  <% end %>
+                </td>
+                <td><%= progress[:best_quiz_score] %></td>
+              </tr>
+            <% end %>
+          <% else %>
             <tr>
-              <td><%= progress[:user].email %></td>
-              <td><%= progress[:correct_answers] %></td>
-              <td><%= progress[:incorrect_answers] %></td>
-              <td><%= progress[:accuracy_percentage] %>%</td>
-              <td><%= progress[:total_quizzes] %></td>
-              <td><%= progress[:average_correct_per_quiz] %></td>
-              <td>
-                <% if progress[:best_quiz] %>
-                  <%= progress[:best_quiz].title %>
-                <% else %>
-                  Nenhum
-                <% end %>
-              </td>
-              <td><%= progress[:best_quiz_score] %></td>
+              <td colspan="8" class="text-center text-muted">Nenhum progresso encontrado para os usuários.</td>
             </tr>
           <% end %>
         </tbody>
@@ -82,14 +92,49 @@
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-header bg-info text-white">
+  <!-- Card de Gerenciamento -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-info text-white d-flex align-items-center">
+      <i class="fas fa-cogs mr-2"></i>
       <h5 class="mb-0">Gerenciamento</h5>
     </div>
     <div class="card-body">
       <ul class="list-unstyled">
-        <li><%= link_to 'Gerenciar Quizzes', admin_quizzes_path, class: "btn btn-primary" %></li>
+        <li class="mb-2">
+          <%= link_to 'Gerenciar Quizzes', admin_quizzes_path, class: "btn btn-primary btn-block" %>
+        </li>
+        <li class="mb-2">
+          <%# <%= link_to 'Gerenciar Usuários', admin_users_path, class: "btn btn-secondary btn-block" %> %>
+        </li>
       </ul>
     </div>
   </div>
 </div>
+
+<style>
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #204a80;
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+
+  .card-header {
+    font-weight: 600;
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  .table thead th {
+    border-bottom: 2px solid #ddd;
+  }
+
+  .btn-block {
+    border-radius: 30px;
+  }
+</style>

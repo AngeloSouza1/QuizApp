@@ -16,7 +16,12 @@
 <body>
   <% unless current_page?(root_path) || devise_controller? %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <%= link_to 'QuizApp', root_path, class: 'navbar-brand' %>
+      <% if admin_signed_in? %>
+        <span class="navbar-brand">QuizApp</span>
+      <% else %>
+        <%= link_to 'QuizApp', root_path, class: 'navbar-brand' %>
+      <% end %>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,6 +39,15 @@
               <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-link' %>
             </li>
           <% elsif admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Ranking Usuários', '#', class: 'nav-link' %>
+            </li>
+             <li class="nav-item">
+              <%= link_to 'Progresso Usuários', '#', class: 'nav-link' %>
+            </li>
+             <li class="nav-item">
+              <%= link_to 'Gerenciamento', '#', class: 'nav-link' %>
+            </li>
             <li class="nav-item">
               <%= link_to 'Admin Dashboard', admin_root_path, class: 'nav-link' %>
             </li>
