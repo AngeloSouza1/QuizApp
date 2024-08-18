@@ -14,7 +14,10 @@ module QuizApp
     # Configuration for the application, engines, and railties goes here.
     config.time_zone = 'America/Sao_Paulo'
     config.active_record.default_timezone = :local
-    config.i18n.default_locale = :pt
+    
+    # Locale settings
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.available_locales = [:'pt-BR']
 
     # Add any custom paths to autoload_paths here
     # config.autoload_paths += %W(#{config.root}/lib)

@@ -1,0 +1,114 @@
+<div class="devise-container d-flex justify-content-center align-items-center">
+  <div class="devise-card shadow-lg p-4 border-0 rounded-extra card-custom">
+    <h2 class="text-center text-primary-dark mb-4">
+      <i class="fas fa-user-plus mr-2"></i> Registrar
+    </h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :email, "E-mail", class: "text-secondary-dark" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-extra", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "Senha", class: "text-secondary-dark" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control rounded-extra", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Confirme sua senha", class: "text-secondary-dark" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control rounded-extra", required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Registrar-se", class: "btn btn-custom btn-sm btn-block text-white font-weight-bold" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .devise-container {
+    min-height: 75vh;
+    background-color: #3568b5; /* Cor de fundo harmoniosa */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    margin-top: 10%;
+    border-radius: 30px; /* Cantos arredondados */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  }
+
+  .devise-card {
+    background-color: #ffffff; 
+    border-radius: 30px; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    border: 1px solid #204a80; /* Bordas azul harmônico para combinar com o jumbotron */
+  }
+
+  .form-control {
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .btn-custom {
+    border-radius: 30px;
+    background-color: #2b5b9e;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-custom:hover {
+    background-color: #1e3e70;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .btn-custom:active {
+    background-color: #16365a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+  }
+
+  .btn-block {
+    border-radius: 30px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #204a80;
+  }
+
+  .form-check-label {
+    color: #495057;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    background-color: #2b5b9e;
+    border-color: #2b5b9e;
+    padding: 8px 16px;
+  }
+
+  .text-secondary-dark {
+    color: #495057;
+  }
+</style>

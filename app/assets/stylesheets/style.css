@@ -1,0 +1,60 @@
+/* Estilos gerais para os formulários do Devise */
+.devise-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Cor de fundo suave e harmoniosa */
+}
+
+.devise-card {
+  background-color: #ffffff; /* Fundo branco para o formulário */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
+  max-width: 400px;
+  width: 100%;
+ 
+}
+
+.devise-card h2 {
+  color: #204a80; /* Azul escuro harmonioso para os títulos */
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.devise-card .form-group {
+  margin-bottom: 15px;
+}
+
+.devise-card .form-group label {
+  font-weight: bold;
+  color: #495057;
+}
+
+.devise-card .form-control {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+}
+
+.devise-card .btn-primary {
+  background-color: #204a80;
+  border-color: #204a80;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.devise-card .btn-primary:hover {
+  background-color: #163c5f;
+}
+
+.devise-card .link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #204a80;
+}

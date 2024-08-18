@@ -7,10 +7,13 @@
     <% @quizzes.each do |quiz| %>
       <div class="col-md-6 col-lg-4 mb-4">
         <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
-          <div class="card-body">
-            <h5 class="card-title "><%= quiz.title %></h5>
-            <p class="card-text"><%= quiz.description %></p>
-            <div class="text-center mt-4">
+          <div class="card-body d-flex flex-column">
+              <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-book-open fa-2x text-primary mr-3"></i>
+              <h5 class="card-title text-dark font-weight-bold mb-0"><%= quiz.title %></h5>
+            </div>
+            <p class="card-text text-muted mb-4"><%= quiz.description %></p>
+            <div class="mt-auto text-center">
               <%= link_to 'Responder', quiz_path(quiz), class: 'btn btn-custom btn-sm text-white font-weight-bold' %>
             </div>
           </div>
@@ -26,27 +29,27 @@
   }
 
   .text-secondary-dark {
-    color: #204a80; /* Cor harmoniosa para títulos */
+    color: #204a80;
   }
 
   .card {
     background-color: #ffffff; 
     border-radius: 30px; 
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    border: 1px solid #204a80; /* Bordas azul harmônico */
+    border: 1px solid #204a80;
   }
 
   .card-custom:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-color: #3568b5; 
+    border-color: #3568b5;
     transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
 
   .card-title {
     font-size: 1.25rem;
-    font-weight: 1600;
-    color: black; /* Cor alterada para preto */
+    font-weight: 700;
+    color: #343a40;
   }
 
   .card-text {
@@ -57,33 +60,24 @@
   .btn-custom {
     border-radius: 50px;
     border: 2px solid #ffffff;
-    background-color: #2b5b9e; /* Escurecer o botão com um tom harmônico */
+    background-color: #2b5b9e;
     padding: 10px 20px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
   }
 
-  .btn-custom::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: all 0.5s ease;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-  }
-
-  .btn-custom:hover::before {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
   .btn-custom:hover {
-    background-color: #204a80; 
+    background-color: #204a80;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
+  }
+
+  .text-dark {
+    color: #343a40;
+  }
+
+  .text-muted {
+    color: #6c757d;
   }
 </style>

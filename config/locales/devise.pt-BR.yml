@@ -1,65 +1,38 @@
-# Traduções adicionais em https://github.com/heartcombo/devise/wiki/I18n
-
 pt-BR:
+  hello: "Olá Mundo!"
   devise:
+    sessions:
+      user:
+        sign_in: 'Entrar'
+        signed_in: 'Login efetuado com sucesso.'
+        sign_out: 'Sair'
+        signed_out: 'Logout efetuado com sucesso.'
+    passwords:
+      user:
+        forgot_your_password: 'Esqueceu sua senha?'
+        send_instructions: 'Instruções de recuperação de senha enviadas para o seu e-mail.'
+        updated: 'Sua senha foi atualizada com sucesso.'
+        update_needs_confirmation: 'Sua senha foi alterada, mas você precisa confirmar seu novo e-mail.'
     confirmations:
-      confirmed: "Seu endereço de e-mail foi confirmado com sucesso."
-      send_instructions: "Você receberá um e-mail com instruções sobre como confirmar seu endereço de e-mail em alguns minutos."
-      send_paranoid_instructions: "Se seu endereço de e-mail existir em nosso banco de dados, você receberá um e-mail com instruções sobre como confirmar seu endereço de e-mail em alguns minutos."
-    failure:
-      already_authenticated: "Você já está autenticado."
-      inactive: "Sua conta ainda não está ativada."
-      invalid: "Credenciais inválidas (%{authentication_keys}) ou senha."
-      locked: "Sua conta está bloqueada."
-      last_attempt: "Você tem mais uma tentativa antes que sua conta seja bloqueada."
-      not_found_in_database: "Credenciais inválidas (%{authentication_keys}) ou senha."
-      timeout: "Sua sessão expirou. Por favor, faça login novamente para continuar."
-      unauthenticated: "Você precisa fazer login ou se cadastrar antes de continuar."
-      unconfirmed: "Você precisa confirmar seu endereço de e-mail antes de continuar."
+      user:
+        send_instructions: 'Você receberá um e-mail com instruções para confirmar sua conta em poucos minutos.'
+        confirmed: 'Sua conta foi confirmada com sucesso.'
+    registrations:
+      user:
+        signed_up: 'Bem-vindo! Você se registrou com sucesso.'
+        signed_up_but_unconfirmed: 'Foi enviado um e-mail contendo instruções de confirmação para o endereço fornecido.'
+        signed_up_but_inactive: 'Foi enviado um e-mail contendo instruções de ativação para o endereço fornecido.'
+        updated: 'Sua conta foi atualizada com sucesso.'
+        update_needs_confirmation: 'Sua conta foi atualizada, mas você precisa confirmar seu novo e-mail.'
+        destroyed: 'Sua conta foi cancelada com sucesso.'
+    unlocks:
+      user:
+        send_instructions: 'Você receberá um e-mail com instruções para desbloquear sua conta em poucos minutos.'
+        unlocked: 'Sua conta foi desbloqueada com sucesso.'
     mailer:
       confirmation_instructions:
-        subject: "Instruções de confirmação"
+        subject: 'Instruções de confirmação'
       reset_password_instructions:
-        subject: "Instruções para redefinir a senha"
+        subject: 'Instruções de recuperação de senha'
       unlock_instructions:
-        subject: "Instruções para desbloquear"
-      email_changed:
-        subject: "E-mail Alterado"
-      password_change:
-        subject: "Senha Alterada"
-    omniauth_callbacks:
-      failure: "Não foi possível autenticar você pelo %{kind} porque \"%{reason}\"."
-      success: "Autenticação bem-sucedida com a conta %{kind}."
-    passwords:
-      no_token: "Você não pode acessar esta página sem vir de um e-mail de redefinição de senha. Se você veio de um e-mail de redefinição de senha, por favor, certifique-se de ter usado o URL completo fornecido."
-      send_instructions: "Você receberá um e-mail com instruções sobre como redefinir sua senha em alguns minutos."
-      send_paranoid_instructions: "Se seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha no seu e-mail em alguns minutos."
-      updated: "Sua senha foi alterada com sucesso. Você está agora autenticado."
-      updated_not_active: "Sua senha foi alterada com sucesso."
-    registrations:
-      destroyed: "Adeus! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve."
-      signed_up: "Bem-vindo! Você se cadastrou com sucesso."
-      signed_up_but_inactive: "Você se cadastrou com sucesso. No entanto, não conseguimos fazer o login porque sua conta ainda não está ativada."
-      signed_up_but_locked: "Você se cadastrou com sucesso. No entanto, não conseguimos fazer o login porque sua conta está bloqueada."
-      signed_up_but_unconfirmed: "Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Por favor, siga o link para ativar sua conta."
-      update_needs_confirmation: "Você atualizou sua conta com sucesso, mas precisamos verificar seu novo endereço de e-mail. Verifique seu e-mail e siga o link de confirmação para confirmar seu novo endereço de e-mail."
-      updated: "Sua conta foi atualizada com sucesso."
-      updated_but_not_signed_in: "Sua conta foi atualizada com sucesso, mas como sua senha foi alterada, você precisa fazer login novamente."
-    sessions:
-      signed_in: "Login realizado com sucesso."
-      signed_out: "Logout realizado com sucesso."
-      already_signed_out: "Já estava deslogado com sucesso."
-    unlocks:
-      send_instructions: "Você receberá um e-mail com instruções sobre como desbloquear sua conta em alguns minutos."
-      send_paranoid_instructions: "Se sua conta existir, você receberá um e-mail com instruções sobre como desbloqueá-la em alguns minutos."
-      unlocked: "Sua conta foi desbloqueada com sucesso. Faça login para continuar."
-  errors:
-    messages:
-      already_confirmed: "já foi confirmado, por favor tente fazer login"
-      confirmation_period_expired: "precisa ser confirmado dentro de %{period}, por favor solicite um novo"
-      expired: "expirou, por favor solicite um novo"
-      not_found: "não encontrado"
-      not_locked: "não estava bloqueado"
-      not_saved:
-        one: "1 erro impediu que este %{resource} fosse salvo:"
-        other: "%{count} erros impediram que este %{resource} fosse salvo:"
+        subject: 'Instruções de desbloqueio de conta'
