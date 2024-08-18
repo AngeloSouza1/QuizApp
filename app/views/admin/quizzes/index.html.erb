@@ -23,7 +23,7 @@
           </thead>
           <tbody>
             <% @quizzes.each_with_index do |quiz, index| %>
-              <tr class="<%= index.even? ? 'bg-light' : '' %>">
+              <tr class="<%= index.even? ? 'bg-light' : 'bg-light-blue' %>">
                 <td><%= quiz.title %></td>
                 <td><%= quiz.description %></td>
                 <td class="text-center">
@@ -86,6 +86,10 @@
 
   .bg-light {
     background-color: #f8f9fa;
+  }
+
+  .bg-light-blue {
+    background-color: #e0e7f3;
   }
 
   .btn-primary {
