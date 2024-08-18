@@ -1,0 +1,53 @@
+<div class="container-fluid mt-4">
+
+  <h2 class="text-primary-dark text-center">Progresso dos Usuários</h2>
+
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-secondary text-white d-flex align-items-center">
+      <i class="fas fa-chart-line mr-2"></i>
+      <h5 class="mb-0">Progresso dos Usuários</h5>
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Email</th>
+            <th>Acertos</th>
+            <th>Erros</th>
+            <th>Porcentagem de Acertos</th>
+            <th>Total de Quizzes Respondidos</th>
+            <th>Média de Acertos por Quiz</th>
+            <th>Melhor Quiz</th>
+            <th>Acertos no Melhor Quiz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @users_progress.present? %>
+            <% @users_progress.each do |progress| %>
+              <tr>
+                <td><%= progress[:user].email %></td>
+                <td><%= progress[:correct_answers] %></td>
+                <td><%= progress[:incorrect_answers] %></td>
+                <td><%= progress[:accuracy_percentage] %>%</td>
+                <td><%= progress[:total_quizzes] %></td>
+                <td><%= progress[:average_correct_per_quiz] %></td>
+                <td>
+                  <% if progress[:best_quiz] %>
+                    <%= progress[:best_quiz].title %>
+                  <% else %>
+                    Nenhum
+                  <% end %>
+                </td>
+                <td><%= progress[:best_quiz_score] %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="8" class="text-center text-muted">Nenhum progresso encontrado para os usuários.</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

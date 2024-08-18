@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   # Página inicial
   root 'home#index'
 
-  # Rotas para Dashboards
+  # Rotas para Dashboards dos usuários
   get 'dashboard', to: 'dashboards#show', as: 'user_dashboard'
-   get 'dashboard', to: 'dashboards#show', as: 'dashboard'
   
   # Devise routes para administradores e usuários
   devise_for :admins, path: 'admins'
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
   # Namespace admin para centralizar todas as rotas de admin
   namespace :admin do
     root to: 'dashboards#show', as: 'root'
+    
+    resources :rankings, only: [:index]
+    resources :progress, only: [:index]
     resources :quizzes do
       resources :questions do
         resources :answers, only: [:create, :update, :destroy]  # Limita as ações de answers no admin

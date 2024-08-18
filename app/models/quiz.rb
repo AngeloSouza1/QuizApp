@@ -2,7 +2,7 @@
 class Quiz < ApplicationRecord
   has_many :user_quiz_views
   has_many :users, through: :user_quiz_views
-
+  has_many :answers
  
  
   has_many :questions, dependent: :destroy
