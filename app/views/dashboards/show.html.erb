@@ -1,11 +1,11 @@
 <div class="container mt-4">
  <div class="welcome-message-container">
-  <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.nome %>!</h1>
+  <h1 class="mb-4 text-center">Bem-vindo, <%= current_user.nome.present? ? current_user.nome : current_user.email %>!</h1>
   <p class="text-center">Este é o seu dashboard, onde você pode ver os quizzes disponíveis e acompanhar seu progresso.</p>
  </div>
  <br>
   <div class="row">
-    <!-- Card do Progresso -->
+     <!-- Card do Progresso -->
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Veja seu progresso atual no quiz.')">
         <div class="card-header bg-primary text-white text-center">
@@ -127,6 +127,7 @@
 <style>
 .card-body {
   overflow-y: auto;
+  max-height: 410px; /* Defina uma altura máxima para o conteúdo do corpo do card */
 }
 
 .col-md-6, .col-lg-3 {
@@ -169,10 +170,6 @@
   border-radius: 20px 20px 0 0; /* Bordas arredondadas somente na parte superior */
 }
 
-.card-body {
-  padding: 20px;
-}
-
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -186,11 +183,13 @@
     margin-bottom: 20px;
     font-size: 1.1rem;
     color: #333;
-  }
+}
 
-  .welcome-message-container {
+.welcome-message-container {
     margin-top: -30px; /* Ajuste esse valor conforme necessário */
 }
+</style>
+
 
 </style>
 

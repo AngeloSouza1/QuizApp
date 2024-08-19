@@ -29,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def average_correct_answers_per_quiz
-    total_quizzes_answered > 0 ? (total_correct_answers.to_f / total_quizzes_answered) : 0
+    total_quizzes_answered > 0 ? (total_correct_answers.to_f / total_quizzes_answered).round(2) : 0.0
   end
 
   def best_quiz
