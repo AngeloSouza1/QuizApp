@@ -1,10 +1,22 @@
 # app/controllers/admin/quizzes_controller.rb
 class Admin::QuizzesController < ApplicationController
   before_action :authenticate_admin! # Garante que apenas admins acessem essas ações
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+    before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  
+
+    
+    
+  def update
+    if @quiz.update(quiz_params)
+      flash[:notice] = "Quiz atualizado com sucesso."
+      redirect_to admin_quizzes_path
+    else
+      render :edit
+    end
+  end
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.order(:title)
   end
 
   def show
@@ -28,14 +40,7 @@ class Admin::QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
-  def update
-    @quiz = Quiz.find(params[:id])
-    if @quiz.update(quiz_params)
-      redirect_to admin_quizzes_path, notice: 'Quiz atualizado com sucesso.'
-    else
-      render :edit
-    end
-  end
+
 
   def destroy
     @quiz = Quiz.find(params[:id])
@@ -50,6 +55,6 @@ class Admin::QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:title, :description, :difficulty,:image)
+    params.require(:quiz).permit(:title, :description, :difficulty, :image)
   end
 end

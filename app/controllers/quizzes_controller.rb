@@ -1,10 +1,13 @@
 
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :answer]
+  before_action :set_quiz, only: [:show, :answer ]
+ 
+
+
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = Quiz.order(:title)
   end
 
   def show

@@ -1,0 +1,14 @@
+<!-- app/views/admin/quizzes/_form_image.html.erb -->
+<div id="quiz_image">
+  <div class="form-group row">
+    <%= form.label :image, 'Imagem', class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.file_field :image, class: 'form-control' %>
+      <% if quiz.image.present? %>
+        <div class="mt-2">
+          <%= image_tag quiz.image.url, class: "img-thumbnail", size: "100x100" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

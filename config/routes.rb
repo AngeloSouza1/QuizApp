@@ -21,15 +21,17 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboards#show', as: 'root'
     
-    resources :rankings, only: [:index]
-    resources :progress, only: [:index]
     resources :quizzes do
-      resources :questions do
-        resources :answers, only: [:create, :update, :destroy]  # Limita as ações de answers no admin
-      end
       member do
         delete :remove_image  # Rota para remover a imagem de um quiz
       end
+      
+      resources :questions do
+        resources :answers, only: [:create, :update, :destroy]  # Limita as ações de answers no admin
+      end
     end
+
+    resources :rankings, only: [:index]
+    resources :progress, only: [:index]
   end
 end
