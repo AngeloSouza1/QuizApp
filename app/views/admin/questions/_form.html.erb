@@ -1,9 +1,7 @@
-<!-- app/views/admin/questions/_form.html.erb -->
-
-<%= form_with(model: [@quiz, @question], local: true, url: @question.new_record? ? admin_quiz_questions_path(@quiz) : admin_quiz_question_path(@quiz, @question), method: @question.new_record? ? :post : :patch) do |form| %>
+<%= form_with(model: [@quiz, @question], local: true, class: 'form-horizontal') do |form| %>
   <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h4>
       <ul>
         <% @question.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -12,26 +10,75 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="form-group">
+    <%= form.label :content, "Conteúdo da Pergunta", class: 'col-form-label font-weight-bold' %>
+    <%= form.text_area :content, class: 'form-control', placeholder: 'Digite o conteúdo da pergunta' %>
   </div>
 
-  <div id="answers">
+  <div id="answers" class="mt-4">
     <% 5.times do |index| %>
       <%= form.fields_for :answers, @question.answers[index] || @question.answers.build do |answer_form| %>
-        <div class="nested-fields">
-          <%= answer_form.hidden_field :user_id, value: current_user&.id %>
-          <%= answer_form.label :content, "Resposta #{index + 1}" %>
-          <%= answer_form.text_field :content %>
-          <%= answer_form.label :correct, "Correta?" %>
-          <%= answer_form.check_box :correct %>
-        </div>
+        <%= render 'answer_fields', f: answer_form %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="actions">
+  <div class="actions mt-3">
     <%= form.submit 'Salvar', class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<style>
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .col-form-label {
+    font-weight: bold;
+    color: #495057;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+    color: #495057;
+  }
+
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .btn-primary {
+    background-color: #204a80;
+    border-color: #204a80;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #183a61;
+    transform: scale(1.05);
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+  }
+
+  .ml-2 {
+    margin-left: 10px; /* Espaçamento entre os botões */
+  }
+</style>

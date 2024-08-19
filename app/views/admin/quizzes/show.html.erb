@@ -1,23 +1,133 @@
 <!-- app/views/admin/quizzes/show.html.erb -->
-<h1><%= @quiz.title %></h1>
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-dark-blue text-white d-flex align-items-center">
+    <i class="fas fa-info-circle mr-2"></i>
+    <h5 class="mb-0"><%= @quiz.title %></h5>
+  </div>
 
-<p>
-  <strong>Descrição:</strong>
-  <%= @quiz.description %>
-</p>
+  <div class="card-body">
+    <div class="description-box p-3 mb-4">
+      <p class="mb-0">
+        <strong>Descrição:</strong>
+        <span class="text-muted"><%= @quiz.description %></span>
+      </p>
+    </div>
+  
+    <h2 class="mt-4">Perguntas</h2>
+     <%= link_to new_admin_quiz_question_path(@quiz), class: 'btn btn-add-question text-white mb-3' do %>
+      <i class="fas fa-plus"></i> Adicionar Pergunta
+    <% end %>
+  
+    <div class="question-list-wrapper">
+      <ul class="list-group">
+        <% @quiz.questions.each do |question| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center list-group-hover">
+            <span><%= question.content %></span>
+            <div class="d-flex align-items-center">
+              <%= link_to edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-link text-warning p-0' do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              <%= button_to admin_quiz_question_path(@quiz, question), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn btn-link text-danger p-0 ml-2' do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-<h2>Perguntas</h2>
-<%= link_to 'Adicionar Pergunta', new_admin_quiz_question_path(@quiz), class: 'btn btn-primary' %>
+    <%= link_to 'Voltar', admin_quizzes_path, class: 'btn btn-secondary mt-3' %>
+  </div>
+</div>
 
-<ul>
-  <% @quiz.questions.each do |question| %>
-    <li>
-      <%= question.content %> |
-      <%= link_to 'Editar', edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-warning btn-sm' %> |
-      <%= button_to 'Excluir', admin_quiz_question_path(@quiz, question), method: :delete, data: { turbo_confirm: 'Tem certeza?', turbo_action: 'remove' }, class: 'btn-link', style: 'background:none; border:none; padding:0; color:#dc3545; text-decoration:underline; cursor:pointer; font-size: 14px;' %>
+<style>
+   .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  .bg-dark-blue {
+    background-color: #204a80;
+  }
 
-</li>
-  <% end %>
-</ul>
+  .description-box {
+    background-color: #f0f4f8; /* Cor de fundo harmoniosa */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
 
-<%= link_to 'Voltar', admin_quizzes_path, class: 'btn btn-secondary' %>
+  .list-group-item {
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .list-group-hover:hover {
+    background-color: #e9ecef;
+  }
+
+  .btn-link {
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 0 5px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .question-list-wrapper {
+    max-height: 450px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .btn-add-question {
+    background-color: #204a80;
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-add-question::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  .btn-add-question:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .btn-add-question:hover {
+    background-color: #183a61;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .justify-content-center {
+    justify-content: center;
+  }
+
+   
+  }
+</style>

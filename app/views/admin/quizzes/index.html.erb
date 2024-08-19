@@ -24,7 +24,7 @@
           <tbody>
             <% @quizzes.each_with_index do |quiz, index| %>
               <tr class="<%= index.even? ? 'bg-light' : 'bg-light-blue' %>">
-                <td><%= quiz.title %></td>
+                <td><strong><%= quiz.title %></strong></td>
                 <td><%= quiz.description %></td>
                 <td class="text-center">
                   <div class="d-flex justify-content-center">

@@ -1,10 +1,67 @@
 <!-- app/views/admin/questions/_answer_fields.html.erb -->
-<div class="nested-fields">
+<div class="nested-fields form-group row align-items-center">
   <%= f.hidden_field :user_id, value: current_admin.id %>
 
-  <%= f.label :content, "Resposta" %>
-  <%= f.text_field :content %>
+  <%= f.label :content, "Resposta", class: 'col-sm-2 col-form-label' %>
+  <div class="col-sm-8">
+    <%= f.text_field :content, class: 'form-control', placeholder: 'Digite a resposta' %>
+  </div>
 
-  <%= f.label :correct, "Correta?" %>
-  <%= f.check_box :correct %>
+  <div class="col-sm-2 d-flex align-items-center justify-content-end">
+    <div class="form-check d-flex align-items-center">
+      <%= f.check_box :correct, class: 'form-check-input' %>
+      <%= f.label :correct, "Correta?", class: 'mb-0 ml-2' %>
+    </div>
+  </div>
 </div>
+<style>
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .col-form-label {
+    font-weight: bold;
+    color: #495057;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    font-size: 1rem;
+    color: #495057;
+  }
+
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  .mr-2 {
+    margin-right: 10px;
+  }
+
+  .ml-2 {
+    margin-left: 10px;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .justify-content-end {
+    justify-content: flex-end;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+</style>

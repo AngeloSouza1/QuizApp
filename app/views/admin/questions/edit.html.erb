@@ -1,6 +1,44 @@
-<!-- app/views/admin/questions/edit.html.erb -->
-<h1>Editar Pergunta</h1>
+<div class="card mb-4 shadow-sm">
+  <div class="card-header bg-dark-blue text-white d-flex align-items-center">
+    <i class="fas fa-edit mr-2"></i>
+    <h5 class="mb-0">Editar Pergunta</h5>
+  </div>
 
-<%= render 'form', quiz: @quiz, question: @question %>
+  <div class="card-body">
+    <%= render 'form', quiz: @quiz, question: @question %>
 
-<%= link_to 'Voltar', admin_quiz_path(@quiz) %>
+    <%= link_to 'Voltar', admin_quiz_path(@quiz), class: 'btn btn-secondary mt-3' %>
+  </div>
+</div>
+
+<style>
+  .bg-dark-blue {
+    background-color: #204a80;
+  }
+
+  .card-header h5 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+  }
+
+  .fas {
+    font-size: 1.25rem;
+  }
+</style>
