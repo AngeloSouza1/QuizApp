@@ -20,8 +20,9 @@ class User < ApplicationRecord
   end
 
   def accuracy_percentage
-    total_answers > 0 ? (total_correct_answers.to_f / total_answers) * 100 : 0
+    total_answers > 0 ? ((total_correct_answers.to_f / total_answers) * 100).round(2) : 0.0
   end
+  
 
   def total_quizzes_answered
     answers.select('DISTINCT quiz_id').count
