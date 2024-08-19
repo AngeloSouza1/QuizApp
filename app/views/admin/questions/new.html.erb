@@ -1,5 +1,5 @@
 <!-- app/views/admin/questions/new.html.erb -->
-<div class="card mb-4 shadow-sm">
+<div class="card mb-4 shadow-sm" style="margin-top: 30px;">
   <div class="card-header bg-dark-blue text-white d-flex align-items-center">
     <i class="fas fa-question-circle mr-2"></i>
     <h5 class="mb-0">Nova Pergunta</h5>
@@ -8,7 +8,6 @@
   <div class="card-body">
     <%= render 'form', quiz: @quiz, question: @question %>
 
-    <%= link_to 'Voltar', admin_quiz_path(@quiz), class: 'btn btn-secondary mt-3' %>
   </div>
 </div>
 
