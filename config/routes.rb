@@ -27,6 +27,9 @@ Rails.application.routes.draw do
       resources :questions do
         resources :answers, only: [:create, :update, :destroy]  # Limita as ações de answers no admin
       end
+      member do
+        delete :remove_image  # Rota para remover a imagem de um quiz
+      end
     end
   end
 end

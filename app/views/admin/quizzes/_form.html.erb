@@ -1,10 +1,10 @@
 <!-- app/views/admin/quizzes/_form.html.erb -->
-<%= form_with(model: [:admin, quiz], local: true, class: 'form-horizontal') do |form| %>
-  <% if quiz.errors.any? %>
+<%= form_with(model: [:admin, @quiz], local: true, class: 'form-horizontal', multipart: true) do |form| %>
+  <% if @quiz.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h4 class="alert-heading"><%= pluralize(quiz.errors.count, "erro") %> proibiu este quiz de ser salvo:</h4>
+      <h4 class="alert-heading"><%= pluralize(@quiz.errors.count, "erro") %> proibiu este quiz de ser salvo:</h4>
       <ul>
-        <% quiz.errors.full_messages.each do |message| %>
+        <% @quiz.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -26,9 +26,22 @@
   </div>
 
   <div class="form-group row">
+    <%= form.label :image, 'Imagem', class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-10">
+      <%= form.file_field :image, class: 'form-control' %>
+      <% if @quiz.image? %> <!-- Verificação para CarrierWave -->
+        <div class="mt-2">
+          <%= image_tag @quiz.image.url, class: "img-thumbnail", size: "100x100" %>
+          <p><%= link_to 'Remover imagem', remove_image_admin_quiz_path(@quiz), method: :delete, class: 'btn btn-danger btn-sm' %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group row">
     <div class="col-sm-10 offset-sm-2">
       <%= form.submit 'Salvar', class: 'btn btn-primary' %>
-         <%= link_to 'Voltar', admin_quizzes_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Voltar', admin_quizzes_path, class: 'btn btn-secondary' %>
     </div>
   </div>
 <% end %>

@@ -1,5 +1,3 @@
-<!-- app/views/quizzes/index.html.erb -->
-
 <div class="container mt-5">
   <h1 class="text-center mb-4 text-secondary-dark">Quizzes Disponíveis</h1>
 
@@ -9,7 +7,11 @@
         <div class="card shadow-lg h-100 border-0 rounded-extra card-custom">
           <div class="card-body d-flex flex-column">
             <div class="d-flex align-items-center mb-3">
-              <i class="fas fa-book-open fa-2x text-primary mr-3"></i>
+              <% if quiz.image.present? %>
+                <%= image_tag quiz.image.url, class: "img-thumbnail mr-3", size: "50x50" %>
+              <% else %>
+                <i class="fas fa-book-open fa-2x text-primary mr-3"></i>
+              <% end %>
               <h5 class="card-title text-dark font-weight-bold mb-0"><%= quiz.title %></h5>
             </div>
             <p class="card-text text-muted mb-4"><%= quiz.description %></p>
@@ -79,5 +81,9 @@
 
   .text-muted {
     color: #6c757d;
+  }
+
+  .img-thumbnail {
+    border-radius: 10px;
   }
 </style>

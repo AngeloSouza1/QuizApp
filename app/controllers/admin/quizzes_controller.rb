@@ -50,6 +50,6 @@ class Admin::QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:title, :description, :difficulty)
+    params.require(:quiz).permit(:title, :description, :difficulty,:image)
   end
 end
