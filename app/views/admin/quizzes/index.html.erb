@@ -1,7 +1,7 @@
 <!-- app/views/admin/quizzes/index.html.erb -->
 <br>
 <div class="card mb-4 shadow-sm">
-  <div class="card-header bg-dark-blue text-white d-flex align-items-center">
+  <div class="card-header bg-dark-blue-gradient text-white d-flex align-items-center">
     <i class="fas fa-chart-line mr-2"></i>
     <h5 class="mb-0">Gerenciamento de Quizzes</h5>
   </div>
@@ -98,6 +98,23 @@
 
   .bg-dark-blue {
     background-color: #204a80;
+  }
+
+  .bg-dark-blue-gradient {
+    background: linear-gradient(45deg, #204a80, #3b5998);
+    animation: gradientShift 5s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .table tbody td.text-center {
