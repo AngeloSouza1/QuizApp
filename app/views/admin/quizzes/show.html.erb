@@ -24,6 +24,9 @@
           <li class="list-group-item d-flex justify-content-between align-items-center list-group-hover">
             <span><%= question.content %></span>
             <div class="d-flex align-items-center">
+              <%= link_to edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-link text-primary-0' do %>
+                <i class="fas fa-plus"></i>
+              <% end %>
               <%= link_to edit_admin_quiz_question_path(@quiz, question), class: 'btn btn-link text-warning p-0' do %>
                 <i class="fas fa-edit"></i>
               <% end %>

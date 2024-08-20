@@ -1,23 +1,20 @@
-
 # app/controllers/admin/questions_controller.rb
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_quiz
-  before_action :set_question, only: [:edit, :update, :destroy]
+  before_action :set_question, only: [:edit, :update, :destroy] 
 
-  def show
-    
+  def index
+    @questions = @quiz.questions
   end
-
 
   def new
     @question = @quiz.questions.build
-    5.times { @question.answers.build } # Cria 5 campos de resposta em branco
   end
 
   def create
     @question = @quiz.questions.build(question_params)
-    
+
     if @question.save
       redirect_to admin_quiz_path(@quiz), notice: 'Pergunta criada com sucesso.'
     else
@@ -25,8 +22,9 @@ class Admin::QuestionsController < ApplicationController
     end
   end
 
+  def show
+  end
   def edit
-    (5 - @question.answers.size).times { @question.answers.build } # Garante que sempre haverá 5 campos de resposta
   end
 
   def update
@@ -56,5 +54,3 @@ class Admin::QuestionsController < ApplicationController
     params.require(:question).permit(:content, answers_attributes: [:id, :content, :correct, :user_id, :quiz_id, :_destroy])
   end
 end
-
-

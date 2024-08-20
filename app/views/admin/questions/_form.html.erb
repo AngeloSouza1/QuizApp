@@ -1,6 +1,4 @@
-
-
-<%= form_with(model: [@quiz, @question], url: admin_quiz_questions_path(@quiz), local: true, class: 'form-horizontal') do |form| %>
+<%= form_with(model: [@quiz, @question], url: @question.persisted? ? admin_quiz_question_path(@quiz, @question) : admin_quiz_questions_path(@quiz), local: true, method: @question.persisted? ? :patch : :post) do |form| %>
   <% if @question.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h4>
@@ -12,17 +10,9 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+<div class="form-group">
     <%= form.label :content, "Conteúdo da Pergunta", class: 'col-form-label font-weight-bold' %>
     <%= form.text_area :content, class: 'form-control', placeholder: 'Digite o conteúdo da pergunta' %>
-  </div>
-
-  <div id="answers" class="mt-4">
-    <% 5.times do |index| %>
-      <%= form.fields_for :answers, @question.answers[index] || @question.answers.build do |answer_form| %>
-        <%= render 'answer_fields', f: answer_form %>
-      <% end %>
-    <% end %>
   </div>
 
   <div class="actions mt-3">
@@ -30,8 +20,6 @@
     <%= link_to 'Voltar', admin_quiz_path(@quiz), class: 'btn btn-secondary ' %>
   </div>
 <% end %>
-
-
 
 <style>
   .form-group {
@@ -85,5 +73,32 @@
 
   .ml-2 {
     margin-left: 10px; /* Espaçamento entre os botões */
+  }
+
+  .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+
+  .mr-2 {
+    margin-right: 10px;
+  }
+
+  .ml-2 {
+    margin-left: 10px;
+  }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .justify-content-end {
+    justify-content: flex-end;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
   }
 </style>
