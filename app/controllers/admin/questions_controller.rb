@@ -1,27 +1,22 @@
+
 # app/controllers/admin/questions_controller.rb
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_quiz
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @questions = @quiz.questions
-  end
+  before_action :set_question, only: [:edit, :update, :destroy]
 
   def show
+    
   end
 
+
   def new
-    @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.questions.build
-    5.times { @question.answers.build } # Sempre cria 5 campos de resposta em branco
+    5.times { @question.answers.build } # Cria 5 campos de resposta em branco
   end
 
   def create
     @question = @quiz.questions.build(question_params)
-    @question.answers.each do |answer|
-      answer.user_id = current_admin.id
-    end
     
     if @question.save
       redirect_to admin_quiz_path(@quiz), notice: 'Pergunta criada com sucesso.'
@@ -31,18 +26,11 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def edit
-    @quiz = Quiz.find(params[:quiz_id])
-    @question = @quiz.questions.find(params[:id])
-    (5 - @question.answers.size).times { @question.answers.build } # Adiciona campos de resposta para totalizar 5
+    (5 - @question.answers.size).times { @question.answers.build } # Garante que sempre haverá 5 campos de resposta
   end
 
   def update
-    @question.assign_attributes(question_params)
-    @question.answers.each do |answer|
-      answer.user_id = current_admin.id if answer.user_id.nil?
-    end
-
-    if @question.save
+    if @question.update(question_params)
       redirect_to admin_quiz_path(@quiz), notice: 'Pergunta atualizada com sucesso.'
     else
       render :edit
@@ -51,7 +39,7 @@ class Admin::QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to admin_quiz_questions_path(@quiz), notice: 'Pergunta excluída com sucesso.'
+    redirect_to admin_quiz_path(@quiz), notice: 'Pergunta excluída com sucesso.'
   end
 
   private
@@ -65,6 +53,8 @@ class Admin::QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content, answers_attributes: [:id, :content, :correct, :user_id, :_destroy])
+    params.require(:question).permit(:content, answers_attributes: [:id, :content, :correct, :user_id, :quiz_id, :_destroy])
   end
 end
+
+

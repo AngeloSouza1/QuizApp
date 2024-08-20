@@ -1,4 +1,6 @@
-<%= form_with(model: [@quiz, @question], local: true, class: 'form-horizontal') do |form| %>
+
+
+<%= form_with(model: [@quiz, @question], url: admin_quiz_questions_path(@quiz), local: true, class: 'form-horizontal') do |form| %>
   <% if @question.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
       <h4 class="alert-heading"><%= pluralize(@question.errors.count, "erro") %> proibiu esta pergunta de ser salva:</h4>
@@ -25,10 +27,11 @@
 
   <div class="actions mt-3">
     <%= form.submit 'Salvar', class: 'btn btn-primary' %>
-        <%= link_to 'Voltar', admin_quiz_path(@quiz), class: 'btn btn-secondary ' %>
-
+    <%= link_to 'Voltar', admin_quiz_path(@quiz), class: 'btn btn-secondary ' %>
   </div>
 <% end %>
+
+
 
 <style>
   .form-group {

@@ -35,25 +35,27 @@
       </div>
     </div>
 
-    <!-- Quizzes Disponíveis -->
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card shadow-sm rounded h-100 card-hover" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
-        <div class="card-header bg-dark text-white text-center">
-          <h5 class="mb-0"><i class="fas fa-list"></i> Quizzes Disponíveis</h5> <!-- Ícone -->
-        </div>
-        <div class="card-body">
-          <% if @quizzes.present? %>
-            <ul class="list-group list-group-flush">
-              <% @quizzes.sort_by(&:title).each do |quiz| %>
-                <li class="list-group-item"><%= link_to quiz.title, quiz_path(quiz), class: "text-dark" %></li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="text-center">Não há quizzes disponíveis no momento.</p>
-          <% end %>
-        </div>
-      </div>
+<!-- Quizzes Disponíveis -->
+<div class="col-lg-3 col-md-6 mb-4">
+  <div class="card shadow-sm rounded h-100 card-hover quizzes-card" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
+    <div class="card-header bg-dark text-white text-center">
+      <h5 class="mb-0"><i class="fas fa-list"></i> Quizzes Disponíveis</h5>
     </div>
+    <div class="card-body">
+      <% if @quizzes.present? %>
+        <ul class="list-group list-group-flush">
+          <% @quizzes.sort_by(&:title).each do |quiz| %>
+            <li class="list-group-item quiz-item" onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='white'">
+              <%= link_to quiz.title, quiz_path(quiz), class: "text-dark" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-center">Não há quizzes disponíveis no momento.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
 <!-- Últimos Quizzes acessados-->
@@ -125,6 +127,27 @@
 
 
 <style>
+  
+  /* Estilo para o card "Quizzes Disponíveis" */
+  .quizzes-card .card-body {
+    overflow-y: auto;
+    max-height: 410px;
+  }
+
+  .quizzes-card .quiz-item {
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .quizzes-card .quiz-item:hover {
+    background-color: #e9ecef; /* Cor ao passar o mouse sobre o item */
+  }
+
+  .card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+
 .card-body {
   overflow-y: auto;
   max-height: 410px; /* Defina uma altura máxima para o conteúdo do corpo do card */

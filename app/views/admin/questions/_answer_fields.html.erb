@@ -1,6 +1,6 @@
-<!-- app/views/admin/questions/_answer_fields.html.erb -->
 <div class="nested-fields form-group row align-items-center">
   <%= f.hidden_field :user_id, value: current_admin.id %>
+  <%= f.hidden_field :quiz_id, value: @quiz.id %>
 
   <%= f.label :content, "Resposta", class: 'col-sm-2 col-form-label' %>
   <div class="col-sm-8">
@@ -14,6 +14,8 @@
     </div>
   </div>
 </div>
+
+
 <style>
   .form-group {
     margin-bottom: 15px;
