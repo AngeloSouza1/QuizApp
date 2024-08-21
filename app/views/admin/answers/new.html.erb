@@ -1,7 +1,8 @@
-<%= form_with(model: [@question, @answer], local: true) do |form| %>
+
+<%= form_with(model: [@quiz, @question, @answer], url: admin_quiz_question_answers_path(@quiz, @question), local: true) do |form| %>
   <% if @answer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@answer.errors.count, "erro") %> proibiu esta resposta de ser salva:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(@answer.errors.count, "erro") %> proibiu esta resposta de ser salva:</h4>
       <ul>
         <% @answer.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,17 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="form-group">
+    <%= form.label :content, 'Texto da Resposta', class: 'control-label' %>
+    <%= form.text_field :content, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :correct %>
-    <%= form.check_box :correct %>
+  <div class="form-check">
+    <%= form.check_box :correct, class: 'form-check-input' %>
+    <%= form.label :correct, 'Correta', class: 'form-check-label' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Salvar', class: 'btn btn-primary mt-3' %>
+  <%= link_to 'Cancelar', admin_quiz_question_path(@quiz, @question), class: 'btn btn-secondary mt-3' %>
 <% end %>

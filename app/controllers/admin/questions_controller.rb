@@ -16,7 +16,11 @@ class Admin::QuestionsController < ApplicationController
   def create
     @question = @quiz.questions.build(question_params)
     if @question.save
-      redirect_to admin_quiz_path(@quiz), notice: 'Pergunta criada com sucesso.'
+      # Criar cinco respostas com "sem resposta ainda"
+      5.times do
+        @question.answers.create(content: "sem resposta ainda", correct: false)
+      end
+      redirect_to edit_admin_quiz_question_path(@quiz, @question), notice: 'Pergunta e respostas criadas com sucesso.'
     else
       render :new
     end

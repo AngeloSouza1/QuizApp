@@ -1,44 +1,37 @@
 <div class="card mb-4 shadow-sm" style="margin-top: 20px;">
   <div class="card-header bg-dark-blue text-white d-flex align-items-center">
-    <i class="fas fas fa-poll mr-2"></i>
-    <h5 class="mb-0">Respostas</h5>
+    <i class="fas fa-pencil-alt mr-2"></i>
+    <h5 class="mb-0">Edição de Respostas</h5>
   </div>
 
+  <div class="card-body">
+    <h5><strong>Pergunta:</strong> <%= @question.content %></h5>
+    <br>
 
+    <% (5 - @question.answers.count).times { @question.answers.build } %>
+    <% @question.answers.each_with_index do |answer, index| %>
+      <div class="answer p-2 mb-2 bg-light border rounded d-flex align-items-center">
+        <div class="mr-auto">
+          <p class="mb-1"><strong>Resposta <%= index + 1 %>:</strong> <%= answer.content.present? ? answer.content : "Sem resposta ainda" %></p>
+          <p class="mb-1"><strong>Correta:</strong> <%= answer.correct ? 'Sim' : 'Não' %></p>
+        </div>
+        <div class="d-flex">
+          <% if answer.persisted? %>
+            <%= link_to edit_admin_quiz_question_answer_path(@question.quiz, @question, answer), class: 'btn btn-link' do %>
+              <i class="fas fa-edit"></i> Editar Resposta
+            <% end %>
+          <% else %>
+            <%= link_to new_admin_quiz_question_answer_path(@question.quiz, @question), class: 'btn btn-link' do %>
+              <i class="fas fa-edit"></i> Criar Resposta
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-
-
-    <div class="card-body">
-      <p>
-        <strong>Conteúdo:</strong>
-        <%= @question.content %>
-      </p>
-
- 
-
-      <% if @question.answers.any? %>
-        <% @question.answers.each do |answer| %>
-          <div class="answer p-3 mb-2 bg-light border rounded">
-            <p>
-              <strong>Conteúdo:</strong>
-              <%= answer.content %>
-            </p>
-            <p>
-              <strong>Correta:</strong>
-              <%= answer.correct ? 'Sim' : 'Não' %>
-            </p>
-            <div class="d-flex justify-content-end">
-              <%= link_to 'Editar', edit_admin_quiz_question_answer_path(@question.quiz, @question, answer), class: "btn btn-sm btn-primary mr-2" %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p>Esta pergunta ainda não tem respostas.</p>
-      <% end %>
-    </div>
-    <div class="card-footer">
-      <%= link_to 'Voltar', admin_quiz_path(@question.quiz), class: "btn btn-secondary" %>
-    </div>
+  <div class="card-footer">
+    <%= link_to 'Voltar', admin_quiz_path(@question.quiz), class: "btn btn-secondary" %>
   </div>
 </div>
 
@@ -46,18 +39,19 @@
   .card-header {
     background-color: #204a80;
     color: white;
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid #204a80;
   }
 
-  .card-title {
-    margin-bottom: 0;
+  .card-body {
+    padding: 10px;
   }
 
   .answer {
     background-color: #f8f9fa;
     border: 1px solid #ced4da;
     border-radius: 5px;
+    padding: 10px;
   }
 
   .btn-primary {
@@ -80,19 +74,28 @@
     border-color: #5a6268;
   }
 
-  .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-  }
-
-  .btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-  }
-
   .card-footer {
     background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
     padding: 10px;
+  }
+
+  .mr-auto {
+    margin-right: auto;
+  }
+
+  .mb-1 {
+    margin-bottom: 0.25rem;
+  }
+
+  .btn-link {
+    padding: 0;
+    margin: 0 5px;
+    color: #204a80;
+  }
+
+  .btn-link:hover {
+    text-decoration: underline;
+    color: #183a61;
   }
 </style>
