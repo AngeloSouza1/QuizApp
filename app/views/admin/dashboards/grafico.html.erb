@@ -1,0 +1,56 @@
+<div class="chart-container text-center">
+  <h3 class="chart-title">Top 10 Quizzes Mais Acessados</h3>
+  <% if @top_quizzes.present? %>
+    <div class="chart-content">
+      <%= bar_chart @top_quizzes.map { |quiz| [quiz.title, quiz.views_count] }, 
+                    colors: ["#204a80"], 
+                    xtitle: "Quizzes", 
+                    ytitle: "Acessos", 
+                    height: "500px",  
+                    library: { 
+                      backgroundColor: "#f9f9f9",
+                      legend: { position: 'bottom', labels: { fontSize: 16 } },
+                      titleTextStyle: { fontSize: 28, bold: true },
+                      hAxis: { textStyle: { fontSize: 18 } }, # Fonte do eixo horizontal
+                      vAxis: { textStyle: { fontSize: 18 } }, # Fonte do eixo vertical
+                      chartArea: { width: '70%', height: '70%' }, # Ajusta a área do gráfico
+                      bar: { groupWidth: "70%" } # Largura das barras
+                    } %>
+    </div>
+  <% else %>
+    <p class="no-data-message">Nenhum dado disponível para exibir o gráfico.</p>
+  <% end %>
+</div>
+
+<style>
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 80px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; 
+  }
+
+  .chart-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #204a80;
+  }
+
+  .chart-content {
+    width: 100%;
+    max-width: 900px; 
+  }
+
+  .no-data-message {
+    font-size: 18px;
+    color: #757575;
+    margin-top: 20px;
+  }
+</style>

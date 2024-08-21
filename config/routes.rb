@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   # Namespace admin para centralizar todas as rotas administrativas
   namespace :admin do
     root to: 'dashboards#show', as: 'root'
-    
+
+      get 'grafico', to: 'dashboards#grafico', as: 'grafico'
     resources :quizzes do
       member do
         delete :remove_image  # Rota para remover a imagem de um quiz

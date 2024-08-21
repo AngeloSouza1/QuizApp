@@ -11,6 +11,9 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    @quiz = Quiz.find(params[:id])
+    @quiz.increment!(:views_count)
+    
     # Registra a visualização do quiz na nova tabela `user_quiz_views`
     UserQuizView.create(user: current_user, quiz: @quiz, accessed_at: Time.current)
     

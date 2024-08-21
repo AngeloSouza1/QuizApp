@@ -10,8 +10,12 @@
   <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_importmap_tags %>
+  <%= javascript_include_tag 'chartkick' %>  
+  <%= javascript_include_tag 'Chart.bundle' %>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
   <style>
     .adjust-top {
       margin-top: 10; /* Ajuste de acordo com a necessidade */
@@ -106,7 +110,10 @@
             <li class="nav-item">
               <%= link_to 'Dashboard', admin_root_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
+             <li class="nav-item">
+              <%= link_to 'Gráfico', admin_grafico_path, class: 'nav-link' %>
+            </li>
+           <li class="nav-item">
               <%= link_to 'Ranking Usuários', admin_rankings_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
