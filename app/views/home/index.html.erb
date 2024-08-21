@@ -17,6 +17,11 @@
         <p class="mt-4 text-light animate-link">Já tem uma conta? <%= link_to 'Faça login aqui', new_user_session_path, class: 'text-white font-weight-bold animate-link' %></p>
       <% end %>
     </div>
+    
+      <p class="mt-2">
+        <%= link_to 'Admin Login', new_admin_session_path, class: 'btn btn-sm btn-outline-light mt-2' %>
+      </p>
+
 
     <div class="vh-1 d-flex flex-column align-items-center justify-content-center bg-custom" style="margin-top: -2%;">
       <h2 class="text-center mb-4 text-secondary-dark animate-title">Funcionalidades do QuizApp</h2>
