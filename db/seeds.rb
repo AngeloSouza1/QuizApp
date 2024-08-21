@@ -17,7 +17,7 @@ def create_quiz_with_questions(title, description, image_name, questions_and_ans
   # Gera o caminho completo da imagem usando a pasta assets/images
   image_path = ActionController::Base.helpers.image_path(image_name)
   
-  quiz = Quiz.create!(title: title, description: description, imagem: image_path)
+  quiz = Quiz.create!(title: title, description: description, image: image_path)
   
   questions_and_answers.each do |question_data|
     question = quiz.questions.create!(content: question_data[:content])
@@ -26,16 +26,14 @@ def create_quiz_with_questions(title, description, image_name, questions_and_ans
       question.answers.create!(
         content: answer_content,
         correct: index == 0,
-        user_id: 1,
-        quiz_id: quiz.id
+        user_id: 1,  # Certifique-se de que o user_id existe
+        quiz_id: quiz.id  # Atribuindo o quiz_id corretamente
       )
     end
   end
 
   puts "Quiz '#{quiz.title}' criado com sucesso!"
 end
-
-
 
 
 # Definição dos quizzes e perguntas/respostas
@@ -229,7 +227,12 @@ quizzes_data = [
 
 # Criação de quizzes, perguntas e respostas
 quizzes_data.each do |quiz_data|
-  create_quiz_with_questions(quiz_data[:title], quiz_data[:description], quiz_data[:questions_and_answers])
+  create_quiz_with_questions(
+    quiz_data[:title], 
+    quiz_data[:description], 
+    quiz_data[:image_name],  # Incluindo o nome da imagem
+    quiz_data[:questions_and_answers]
+  )
 end
 
 puts "Banco de dados populado com os quizzes adicionais!"
