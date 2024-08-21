@@ -1,7 +1,7 @@
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_quiz
-  before_action :set_question, only: [:edit, :update, :destroy]  
+  before_action :set_question, only: [:edit, :update, :destroy, :show]
   
   def show
     @question = Question.includes(:answers).find(params[:id])
@@ -15,12 +15,19 @@ class Admin::QuestionsController < ApplicationController
 
   def create
     @question = @quiz.questions.build(question_params)
+
     if @question.save
-      # Criar cinco respostas com "sem resposta ainda"
+      # Criar respostas padrão associadas ao quiz e à pergunta recém-criada
       5.times do
-        @question.answers.create(content: "sem resposta ainda", correct: false)
+        @question.answers.create!(
+          content: "sem resposta ainda", 
+          correct: false, 
+          user_id: current_admin.id, 
+          quiz_id: @quiz.id
+        )
       end
-      redirect_to edit_admin_quiz_question_path(@quiz, @question), notice: 'Pergunta e respostas criadas com sucesso.'
+      
+      redirect_to admin_quiz_question_path(@quiz, @question), notice: 'Pergunta criada com sucesso.'
     else
       render :new
     end
