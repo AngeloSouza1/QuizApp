@@ -162,163 +162,167 @@
 
 <style>
   .bg-custom {
-    background-color: #dce3e9;
-    width: 100%;
-    padding-left: 5%;  
-    padding-right: 5%; 
+      background: linear-gradient(135deg, #f0f4f8, #dce3e9); /* Gradiente suave */
+      width: 100%;
+      padding-left: 5%;  
+      padding-right: 5%; 
   }
 
   .bg-primary-light {
-    background-color: #3568b5;
-    color: #ffffff;
-    border-radius: 30px;
+      background-color: #2b5b9e; /* Ajuste de cor para harmonizar com o logo */
+      color: #ffffff;
+      border-radius: 30px;
   }
 
   .btn-custom {
-    border-radius: 50px;
-    border: 2px solid #ffffff;
-    background-color: #2b5b9e;
-    padding: 15px 30px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
+      border-radius: 50px;
+      border: 2px solid #ffffff;
+      background-color: #3498db; /* Ajuste de cor para combinar com o logo */
+      padding: 15px 30px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
   }
 
   .btn-custom::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: all 0.5s ease;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: all 0.5s ease;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
   }
 
   .btn-custom:hover::before {
-    transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%) scale(1);
   }
 
   .btn-custom:hover {
-    background-color: #204a80;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    transform: scale(1.05);
+      background-color: #204a80;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transform: scale(1.05);
   }
 
   .card {
-    background-color: #ffffff;
-    border-radius: 30px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    border: 1px solid #204a80;
+      background-color: #ffffff;
+      border-radius: 30px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      border: 1px solid #3498db; /* Ajuste para harmonizar com o logo */
   }
 
   .card-custom:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-color: #3568b5;
-    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-color: #2b5b9e; /* Ajuste para harmonizar com o logo */
+      transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
 
   .rounded-extra {
-    border-radius: 30px;
+      border-radius: 30px;
   }
 
   .card-body {
-    padding: 20px;
+      padding: 20px;
   }
 
   .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
+      font-size: 1.25rem;
+      font-weight: 600;
   }
 
   .card-text {
-    font-size: 1rem;
-    color: #6c757d;
+      font-size: 1rem;
+      color: #6c757d;
   }
 
   .container {
-    max-width: 1200px;
+      max-width: 1200px;
   }
 
   .vh-100 {
-    min-height: 100vh;
+      min-height: 100vh;
   }
 
   .text-secondary-dark {
-    color: #204a80;
+      color: #2b5b9e; /* Ajuste para harmonizar com o logo */
   }
 
   .animate-btn, .animate-title, .animated-logo, .animate-jumbotron {
-    animation: fadeInUp 1s ease forwards;
+      animation: fadeInUp 1s ease forwards;
   }
 
   .animate-title {
-    animation-delay: 0.5s;
+      animation-delay: 0.5s;
   }
 
   .animate-btn {
-    animation-delay: 1s;
+      animation-delay: 1s;
   }
 
   .animated-logo {
-    animation-delay: 0.2s;
+      animation-delay: 0.2s;
   }
 
   .animate-jumbotron {
-    animation-delay: 0.8s;
+      animation-delay: 0.8s;
   }
 
   .animate-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .animate-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
   @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+      0% {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      100% {
+          opacity: 1;
+          transform: translateY(0);
+      }
   }
 
   .faq-card {
-    border: none;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+      border: none;
+      background-color: #f8f9fa;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
   }
 
   .faq-header {
-    background-color: #204a80;
-    color: #ffffff;
-    border-radius: 15px;
-    padding: 10px 20px;
+      background-color: #204a80;
+      color: #ffffff;
+      border-radius: 15px;
+      padding: 10px 20px;
   }
 
   .faq-btn {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    width: 100%;
-    text-align: left;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      width: 100%;
+      text-align: left;
   }
 
   .faq-btn:hover {
-    color: #dce3e9;
+      color: #dce3e9;
   }
 
   .faq-btn:focus {
-    box-shadow: none;
+      box-shadow: none;
+  }
+
+  .display-4, .lead, .card-title {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 </style>
