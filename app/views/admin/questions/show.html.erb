@@ -1,0 +1,98 @@
+<div class="card mb-4 shadow-sm" style="margin-top: 20px;">
+  <div class="card-header bg-dark-blue text-white d-flex align-items-center">
+    <i class="fas fas fa-poll mr-2"></i>
+    <h5 class="mb-0">Respostas</h5>
+  </div>
+
+
+
+
+
+    <div class="card-body">
+      <p>
+        <strong>Conteúdo:</strong>
+        <%= @question.content %>
+      </p>
+
+ 
+
+      <% if @question.answers.any? %>
+        <% @question.answers.each do |answer| %>
+          <div class="answer p-3 mb-2 bg-light border rounded">
+            <p>
+              <strong>Conteúdo:</strong>
+              <%= answer.content %>
+            </p>
+            <p>
+              <strong>Correta:</strong>
+              <%= answer.correct ? 'Sim' : 'Não' %>
+            </p>
+            <div class="d-flex justify-content-end">
+              <%= link_to 'Editar', edit_admin_quiz_question_answer_path(@question.quiz, @question, answer), class: "btn btn-sm btn-primary mr-2" %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Esta pergunta ainda não tem respostas.</p>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Voltar', admin_quiz_path(@question.quiz), class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-header {
+    background-color: #204a80;
+    color: white;
+    padding: 15px;
+    border-bottom: 1px solid #204a80;
+  }
+
+  .card-title {
+    margin-bottom: 0;
+  }
+
+  .answer {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #204a80;
+    border-color: #204a80;
+  }
+
+  .btn-primary:hover {
+    background-color: #183a61;
+    border-color: #183a61;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 10px;
+  }
+</style>

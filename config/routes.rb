@@ -26,8 +26,8 @@ Rails.application.routes.draw do
         delete :remove_image  # Rota para remover a imagem de um quiz
       end
       
-      resources :questions do
-        resources :answers, only: [:create, :update, :destroy]
+      resources :questions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+        resources :answers, only: [:index, :show, :new, :create, :edit, :update, :destroy]  # Incluindo todas as ações necessárias para answers
       end
     end
 

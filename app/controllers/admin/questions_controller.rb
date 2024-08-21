@@ -1,12 +1,13 @@
-# app/controllers/admin/questions_controller.rb
 class Admin::QuestionsController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_quiz
-  before_action :set_question, only: [:edit, :update, :destroy] 
-
-  def index
-    @questions = @quiz.questions
+  before_action :set_question, only: [:edit, :update, :destroy]  
+  
+  def show
+    @question = Question.includes(:answers).find(params[:id])
   end
+  
+
 
   def new
     @question = @quiz.questions.build
@@ -14,7 +15,6 @@ class Admin::QuestionsController < ApplicationController
 
   def create
     @question = @quiz.questions.build(question_params)
-
     if @question.save
       redirect_to admin_quiz_path(@quiz), notice: 'Pergunta criada com sucesso.'
     else
@@ -22,9 +22,8 @@ class Admin::QuestionsController < ApplicationController
     end
   end
 
-  def show
-  end
   def edit
+    # Lógica de edição
   end
 
   def update
