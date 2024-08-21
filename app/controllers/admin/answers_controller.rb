@@ -16,15 +16,16 @@ class Admin::AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.build(answer_params)
-    @answer.user_id = current_admin.id # Atribua o user_id do admin logado
-    @answer.quiz_id = @quiz.id # Atribua o quiz_id da pergunta associada
+    @answer.user_id = current_admin.id # Atribui o user_id do admin logado
+    @answer.quiz_id = @quiz.id # Atribui o quiz_id
   
     if @answer.save
-      redirect_back fallback_location: admin_quiz_question_path(@quiz, @question), notice: 'Resposta criada com sucesso.'
+      redirect_to admin_quiz_question_path(@quiz, @question), notice: 'Resposta criada com sucesso.'
     else
       render :new
     end
   end
+  
 
   def edit
     # Certificar que existam sempre 5 respostas para edição

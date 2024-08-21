@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   # Rotas para quizzes e suas sub-rotas para usuários
   resources :quizzes, only: [:index, :show] do
     member do
-      post :answer  # Usando post para enviar respostas
+      post :answer  # Usando POST para enviar respostas
     end
     resources :questions, only: [:index, :show]
   end
 
-  # Namespace admin para centralizar todas as rotas de admin
+  # Namespace admin para centralizar todas as rotas administrativas
   namespace :admin do
     root to: 'dashboards#show', as: 'root'
     
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       end
       
       resources :questions do
-        resources :answers, only: [:new, :create, :edit, :update, :destroy]  # Incluindo todas as ações necessárias para answers
+        resources :answers, only: [:new, :create, :edit, :update, :destroy, :show]  # Incluindo a ação show para respostas
       end
     end
 
