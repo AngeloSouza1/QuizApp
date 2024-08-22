@@ -35,6 +35,7 @@
       </div>
     </div>
 
+
 <!-- Quizzes Disponíveis -->
 <div class="col-lg-3 col-md-6 mb-4">
   <div class="card shadow-sm rounded h-100 card-hover quizzes-card" onmouseover="updateFooterMessage('Aqui estão os quizzes disponíveis para você responder.')">
@@ -45,7 +46,10 @@
       <% if @quizzes.present? %>
         <ul class="list-group list-group-flush">
           <% @quizzes.sort_by(&:title).each do |quiz| %>
-            <li class="list-group-item quiz-item" onmouseover="this.style.backgroundColor='#f0f0f0'" onmouseout="this.style.backgroundColor='white'">
+            <li class="list-group-item quiz-item d-flex align-items-center">
+              <% if quiz.image.present? %>
+                <%= image_tag quiz.image.url, class: "img-thumbnail me-3", size: "50x50", alt: "#{quiz.title} image" %>
+              <% end %>
               <%= link_to quiz.title, quiz_path(quiz), class: "text-dark" %>
             </li>
           <% end %>
@@ -56,6 +60,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 
 
 <!-- Últimos Quizzes acessados-->
