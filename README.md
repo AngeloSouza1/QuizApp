@@ -60,6 +60,32 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
   <img src="https://github.com/user-attachments/assets/9ca64fb5-e128-4a50-b92e-8ed5cd51c6eb" width="250" height="150" alt="Gráfico de Acessos">
 </a>
 
+<a href="https://github.com/user-attachments/assets/eda2aa94-90d7-45a5-937c-509f38105fee">
+  <img src="https://github.com/user-attachments/assets/9eb76c2a-232b-4ddc-940c-826cc147e645" width="250" height="150" alt="Tela Cadastro">
+</a>
+
+<a href="https://github.com/user-attachments/assets/0ac64890-481b-449d-99ec-d76165fe3fa3">
+  <img src="https://github.com/user-attachments/assets/612f51cd-670e-4ac7-a54d-458594b3a6ad" width="250" height="150" alt="Perfil Usuário">
+</a>
+
+<a href="https://github.com/user-attachments/assets/9ca64fb5-e128-4a50-b92e-8ed5cd51c6eb">
+  <img src="https://github.com/user-attachments/assets/9f80fde9-2652-4330-9370-a2eb85a0d55e" width="250" height="150" alt="Gráfico de Acessos">
+</a>
+
+<a href="https://github.com/user-attachments/assets/5ee55415-2d03-4c31-b0cf-359e6de1f443">
+  <img src="https://github.com/user-attachments/assets/9eb76c2a-232b-4ddc-940c-826cc147e645" width="250" height="150" alt="Tela Cadastro">
+</a>
+
+<a href="https://github.com/user-attachments/assets/4466f3ca-ccc4-40c9-a274-c8d5cddbbaaf">
+  <img src="https://github.com/user-attachments/assets/612f51cd-670e-4ac7-a54d-458594b3a6ad" width="250" height="150" alt="Perfil Usuário">
+</a>
+
+<a href="https://github.com/user-attachments/assets/effe0a69-c771-42c8-a630-ec7d180c5a93">
+  <img src="https://github.com/user-attachments/assets/9f80fde9-2652-4330-9370-a2eb85a0d55e" width="250" height="150" alt="Gráfico de Acessos">
+</a>
+
+
+
 
 <br>
 
