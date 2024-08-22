@@ -46,11 +46,11 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
 <br>
 ---
 
-🔹Video de demonstração
+🔹 Vídeos de demonstração
 
   - Perfil Administrador
 
-
+https://github.com/user-attachments/assets/b5af9090-7610-4542-a5fd-81c7a03f5bfd
 
 - Perfil Usuário
 
