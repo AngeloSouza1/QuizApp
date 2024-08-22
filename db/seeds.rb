@@ -13,11 +13,8 @@ user = User.create(email: 'user@example.com', password: 'password123', password_
 puts "Admin e user criados!"
 
 # Função para criar um quiz, perguntas e respostas
-def create_quiz_with_questions(title, description, image_name, questions_and_answers)
-  # Gera o caminho completo da imagem usando a pasta assets/images
-  image_path = ActionController::Base.helpers.image_path(image_name)
-  
-  quiz = Quiz.create!(title: title, description: description, image: image_path)
+def create_quiz_with_questions(title, description, questions_and_answers)
+  quiz = Quiz.create!(title: title, description: description)
   
   questions_and_answers.each do |question_data|
     question = quiz.questions.create!(content: question_data[:content])
@@ -41,7 +38,6 @@ quizzes_data = [
   {
     title: 'Algoritmos',
     description: 'Teste seus conhecimentos sobre algoritmos e estruturas de dados.',
-    image_name: 'algoritmos.png', 
     questions_and_answers: [
       { content: "Qual é a complexidade de tempo do algoritmo de busca binária?", answers: ["O(log n)", "O(n)", "O(n log n)", "O(1)", "O(n^2)"] },
       { content: "Qual é o pior caso para o algoritmo de ordenação por seleção?", answers: ["O(n^2)", "O(n)", "O(log n)", "O(n log n)", "O(1)"] },
@@ -58,7 +54,6 @@ quizzes_data = [
   {
     title: 'Desenvolvimento WEB',
     description: 'Teste seus conhecimentos sobre desenvolvimento web.',
-    image_name: 'desenvolvimentomobile.png',
     questions_and_answers: [
       { content: "Qual é a função do HTML?", answers: ["Estruturar o conteúdo da página", "Estilizar a página", "Adicionar interatividade à página", "Gerenciar o banco de dados", "Controlar o servidor web"] },
       { content: "O que significa CSS?", answers: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets", "Colorful Style Sheets", "Complex Style Sheets"] },
@@ -70,7 +65,6 @@ quizzes_data = [
   {
     title: 'Desenvolvimento de Aplicativos Móveis',
     description: 'Teste seus conhecimentos sobre desenvolvimento de aplicativos móveis.',
-    image_name: 'desenvolvimentomobile.png',
     questions_and_answers: [
       { content: "Qual é a linguagem de programação principal para Android?", answers: ["Java", "Swift", "Kotlin", "Objective-C", "C#"] },
       { content: "Qual é a linguagem de programação principal para iOS?", answers: ["Swift", "Java", "Kotlin", "Objective-C", "C#"] },
@@ -82,7 +76,6 @@ quizzes_data = [
   {
     title: 'Redes de Computadores',
     description: 'Teste seus conhecimentos sobre redes de computadores.',
-    image_name: 'REDE.png',
     questions_and_answers: [
       { content: "O que significa IP?", answers: ["Internet Protocol", "Internet Package", "Internal Protocol", "Information Protocol", "Integrated Protocol"] },
       { content: "Qual é a função de um roteador?", answers: ["Direcionar pacotes de dados entre redes", "Gerenciar a memória do computador", "Armazenar dados", "Proteger o sistema operacional", "Executar comandos em um servidor"] },
@@ -94,7 +87,6 @@ quizzes_data = [
   {
     title: 'Banco de Dados',
     description: 'Teste seus conhecimentos sobre bancos de dados.',
-    image_name: 'bancodados.png',
     questions_and_answers: [
       { content: "O que significa SQL?", answers: ["Structured Query Language", "Sequential Query Language", "Standard Query Language", "Secure Query Language", "Server Query Language"] },
       { content: "O que é uma chave primária?", answers: ["Identificador único de uma tabela", "Uma coluna que pode ter valores duplicados", "Uma forma de encriptar dados", "Um tipo de índice de banco de dados", "Uma consulta que junta duas tabelas"] },
@@ -106,7 +98,6 @@ quizzes_data = [
   {
     title: 'CSS',
     description: 'Teste seus conhecimentos sobre CSS (Cascading Style Sheets).',
-    image_name: 'CSS.png',
     questions_and_answers: [
       { content: "O que significa CSS?", answers: ["Cascading Style Sheets", "Cascading Style Scripts", "Computer Style Sheets", "Colorful Style Sheets", "Creative Style Sheets"] },
       { content: "Qual é a função do CSS?", answers: ["Estilizar documentos HTML", "Adicionar funcionalidade a páginas web", "Gerenciar o banco de dados", "Configurar o servidor web", "Estruturar o conteúdo da página"] },
@@ -118,7 +109,6 @@ quizzes_data = [
   {
     title: 'HTML',
     description: 'Teste seus conhecimentos sobre HTML (HyperText Markup Language).',
-    image_name: 'html.png',
     questions_and_answers: [
       { content: "O que significa HTML?", answers: ["HyperText Markup Language", "HyperText Markdown Language", "Hyper Transfer Markup Language", "Hyperlink Markup Language", "Hyperlink Transfer Language"] },
       { content: "Qual é a função do HTML?", answers: ["Estruturar o conteúdo da página", "Adicionar estilos à página", "Controlar a funcionalidade da página", "Gerenciar o banco de dados", "Configurar o servidor web"] },
@@ -130,7 +120,6 @@ quizzes_data = [
   {
     title: 'Ruby',
     description: 'Teste seus conhecimentos sobre a linguagem de programação Ruby.',
-    image_name: 'ruby.png',
     questions_and_answers: [
       { content: "Qual é a função do operador ||= em Ruby?", answers: ["Atribui o valor apenas se a variável for nil ou false", "Atribui sempre o valor à variável", "Comparar valores", "Concatena strings", "Incrementa um valor"] },
       { content: "O que é um bloco em Ruby?", answers: ["Um pedaço de código que pode ser passado para um método", "Uma estrutura de controle de fluxo", "Um tipo de variável", "Uma gem", "Um método privado"] },
@@ -142,7 +131,6 @@ quizzes_data = [
   {
     title: 'Ruby on Rails',
     description: 'Teste seus conhecimentos sobre o framework Ruby on Rails.',
-    image_name: 'rails.png',
     questions_and_answers: [
       { content: "Qual comando é utilizado para criar um novo projeto Rails?", answers: ["rails new", "rails create", "rails generate", "rails start", "rails init"] },
       { content: "Qual é o padrão de arquitetura utilizado pelo Rails?", answers: ["MVC (Model-View-Controller)", "MVVM (Model-View-ViewModel)", "Layered Architecture", "Monolithic", "RESTful Architecture"] },
@@ -154,7 +142,6 @@ quizzes_data = [
   {
     title: 'Java',
     description: 'Teste seus conhecimentos sobre a linguagem de programação Java.',
-    image_name: 'java.png',
     questions_and_answers: [
       { content: "Qual é o compilador padrão usado para compilar programas em Java?", answers: ["javac", "java", "jvm", "javadoc", "jar"] },
       { content: "Qual é o método principal de entrada em um programa Java?", answers: ["public static void main(String[] args)", "public void main(String[] args)", "public static String main(String args)", "static public void main()", "void main(String args[])"] },
@@ -166,7 +153,6 @@ quizzes_data = [
   {
     title: 'Python',
     description: 'Teste seus conhecimentos sobre a linguagem de programação Python.',
-    image_name: 'pyhon.png',
     questions_and_answers: [
       { content: "Qual comando é usado para instalar pacotes em Python?", answers: ["pip install", "python install", "python -m install", "install-pkg", "pkg install"] },
       { content: "Como você define uma função em Python?", answers: ["def nome_da_funcao():", "function nome_da_funcao():", "fn nome_da_funcao:", "func nome_da_funcao():", "define nome_da_funcao:"] },
@@ -178,7 +164,6 @@ quizzes_data = [
   {
     title: 'Git e Github',
     description: 'Teste seus conhecimentos sobre Git e GitHub.',
-    image_name: 'git.png',
     questions_and_answers: [
       { content: "O que significa 'commit' em Git?", answers: ["Salvar as mudanças no repositório", "Criar um novo branch", "Mesclar dois branches", "Reverter mudanças", "Atualizar o repositório"] },
       { content: "O que é um 'branch' em Git?", answers: ["Uma versão paralela do repositório", "Uma combinação de commits", "Uma ferramenta de merge", "Um arquivo de configuração", "Um clone do repositório"] },
@@ -190,7 +175,6 @@ quizzes_data = [
   {
     title: 'Tecnologia Atual',
     description: 'Teste seus conhecimentos sobre as últimas tendências tecnológicas.',
-    image_name: 'tecnologiaatual.png',
     questions_and_answers: [
       { content: "Qual é a tecnologia de comunicação sem fio que está revolucionando a indústria automobilística?", answers: ["5G", "Wi-Fi 6", "Bluetooth 5.0", "NFC", "LoRaWAN"] },
       { content: "Qual tecnologia está no centro da criação de moedas digitais, como o Bitcoin?", answers: ["Blockchain", "Inteligência Artificial", "Cloud Computing", "IoT", "5G"] },
@@ -200,21 +184,8 @@ quizzes_data = [
     ]
   },
   {
-    title: 'Rust',
-    description: 'Teste seus conhecimentos sobre a linguagem de programação Rust.',
-    image_name: 'rust.png',
-    questions_and_answers: [
-      { content: "O que é o Rust?", answers: ["Uma linguagem de programação de sistemas focada em segurança e performance", "Um framework web", "Uma biblioteca para gráficos 3D", "Um sistema operacional", "Uma ferramenta de gerenciamento de pacotes"] },
-      { content: "O que é o conceito de 'ownership' em Rust?", answers: ["Um sistema de gerenciamento de memória que garante segurança sem um garbage collector", "Um padrão de projeto para organizar o código", "Uma técnica de otimização de código", "Uma ferramenta de controle de versões", "Um recurso exclusivo para interfaces gráficas"] },
-      { content: "Qual é a principal função do sistema de 'borrowing' em Rust?", answers: ["Permitir referências a dados sem transferir ownership", "Gerenciar threads de maneira eficiente", "Facilitar a conexão com bancos de dados", "Gerar código otimizado para GPUs", "Implementar interfaces de usuário"] },
-      { content: "O que é o 'Cargo' em Rust?", answers: ["Uma ferramenta de gerenciamento de pacotes e builds", "Um compilador", "Um debugger", "Um framework para desenvolvimento web", "Um editor de código específico para Rust"] },
-      { content: "Qual é a principal diferença entre 'String' e '&str' em Rust?", answers: ["'String' é alocada dinamicamente e '&str' é uma fatia imutável de string", "'String' é um tipo primitivo e '&str' é uma referência", "'String' é uma struct e '&str' é uma enumeração", "'&str' é usada para strings mutáveis e 'String' para imutáveis", "'String' é apenas usada em sistemas operacionais, '&str' em aplicações comuns"] }
-    ]
-},
-  {
     title: 'Inteligência Artificial',
     description: 'Teste seus conhecimentos sobre Inteligência Artificial e suas aplicações.',
-    image_name: 'IA.png',
     questions_and_answers: [
       { content: "Qual é o algoritmo de aprendizado de máquina mais comumente usado para classificação?", answers: ["SVM (Support Vector Machine)", "KNN (K-Nearest Neighbors)", "Random Forest", "Naive Bayes", "Logistic Regression"] },
       { content: "Qual é a principal vantagem das redes neurais convolucionais (CNNs)?", answers: ["Detecção automática de padrões em imagens", "Velocidade de processamento", "Capacidade de operar sem supervisão", "Maior precisão em dados estruturados", "Facilidade de implementação"] },
@@ -227,12 +198,7 @@ quizzes_data = [
 
 # Criação de quizzes, perguntas e respostas
 quizzes_data.each do |quiz_data|
-  create_quiz_with_questions(
-    quiz_data[:title], 
-    quiz_data[:description], 
-    quiz_data[:image_name],  # Incluindo o nome da imagem
-    quiz_data[:questions_and_answers]
-  )
+  create_quiz_with_questions(quiz_data[:title], quiz_data[:description], quiz_data[:questions_and_answers])
 end
 
 puts "Banco de dados populado com os quizzes adicionais!"

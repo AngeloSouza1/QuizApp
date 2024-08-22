@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for quizapp-snowy-cherry-6343 on 2024-08-21T18:26:02-03:00
+# fly.toml app configuration file generated for quizapp-cool-voice-8360 on 2024-08-21T21:25:08-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'quizapp-snowy-cherry-6343'
+app = 'quizapp-cool-voice-8360'
 primary_region = 'gru'
 console_command = '/rails/bin/rails console'
 
@@ -21,3 +21,10 @@ console_command = '/rails/bin/rails console'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+[deploy]
+  release_command = "./bin/rails db:prepare"
+
+[[statics]]
+  guest_path = "/rails/public"
+  url_prefix = "/"
+
