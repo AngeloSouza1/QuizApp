@@ -121,7 +121,7 @@ Para executar a aplicação localmente em seu ambiente de desenvolvimento, siga 
 
 🔹 Clone o repositório:
   ```bash
-git clone https://github.com/seu-usuario/QuizApp.git
+git clone https://github.com/AngeloSouza1/QuizApp.git
 
 ```
 🔹 Abra o diretório do projeto
