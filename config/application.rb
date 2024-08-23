@@ -19,6 +19,12 @@ module QuizApp
     config.i18n.default_locale = :'pt-BR'
     config.i18n.available_locales = [:'pt-BR']
 
+
+    # Permite o hostname da aplicação no Fly.io em todos os ambientes
+      config.hosts << "quizapp-2791.fly.dev"
+
+      
+
     # Add any custom paths to autoload_paths here
     # config.autoload_paths += %W(#{config.root}/lib)
 

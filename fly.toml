@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for quizapp-2791 on 2024-08-23T11:28:33-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'quizapp-2791'
+primary_region = 'gru'
+console_command = '/rails/bin/rails console'
+
+[build]
+
+[deploy]
+  release_command = 'bin/rails db:migrate'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
