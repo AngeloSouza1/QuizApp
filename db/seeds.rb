@@ -1,29 +1,36 @@
 # db/seeds.rb
 
 # Destrói todos os dados anteriores para evitar duplicação
-Quiz.destroy_all
-Question.destroy_all
 Answer.destroy_all
+Question.destroy_all
+Quiz.destroy_all
 User.destroy_all
 Admin.destroy_all
 
-admin = Admin.create(email: 'admin@example.com', password: 'password123', password_confirmation: 'password123')
-user = User.create(email: 'user@example.com', password: 'password123', password_confirmation: 'password123')
+# Criação do Admin
+admin = Admin.find_or_create_by!(email: 'admin@example.com') do |admin|
+  admin.password = 'password123'
+  admin.password_confirmation = 'password123'
+end
+
+# Criação do User
+user = User.find_or_create_by!(email: 'user@example.com') do |user|
+  user.password = 'password123'
+  user.password_confirmation = 'password123'
+end
 
 puts "Admin e user criados!"
 
 # Função para criar um quiz, perguntas e respostas
-def create_quiz_with_questions(title, description, image_path, questions_and_answers)
+def create_quiz_with_questions(user, title, description, image_path, questions_and_answers)
   # Verifica se o arquivo de imagem existe
   image_file = File.open(Rails.root.join('app', 'assets', 'images', image_path)) if File.exist?(Rails.root.join('app', 'assets', 'images', image_path))
   
-
   quiz = Quiz.create!(
     title: title,
     description: description,
     image: image_file 
   )
-
 
   questions_and_answers.each do |question_data|
     question = quiz.questions.create!(content: question_data[:content])
@@ -35,7 +42,7 @@ def create_quiz_with_questions(title, description, image_path, questions_and_ans
       question.answers.create!(
         content: answer_data[:content],
         correct: answer_data[:correct],
-        user_id: 1,  # Certifique-se de que o user_id existe
+        user_id: user.id,  # Usa o ID do usuário criado dinamicamente
         quiz_id: quiz.id  # Atribuindo o quiz_id corretamente
       )
     end
@@ -43,6 +50,7 @@ def create_quiz_with_questions(title, description, image_path, questions_and_ans
 
   puts "Quiz '#{quiz.title}' criado com sucesso!"
 end
+
 # Definição dos quizzes e perguntas/respostas
 quizzes_data = [
   {
@@ -1549,6 +1557,7 @@ quizzes_data = [
 # Criação de quizzes, perguntas e respostas
 quizzes_data.each do |quiz_data|
   create_quiz_with_questions(
+    user,  # Passando o usuário criado
     quiz_data[:title], 
     quiz_data[:description], 
     quiz_data[:image], 
@@ -1556,4 +1565,5 @@ quizzes_data.each do |quiz_data|
   )
 end
 puts "Banco de dados populado com os quizzes adicionais!"
+
 
