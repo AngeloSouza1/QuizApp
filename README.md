@@ -43,9 +43,8 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
 
 ### 💡 Veja!
 
-🔹 Imagens 
+🔹 Imagens dos Perfis
 
-## Imagens dos Perfis
 <p align="center">
   <a href="https://github.com/user-attachments/assets/9eb76c2a-232b-4ddc-940c-826cc147e645">
     <img src="https://github.com/user-attachments/assets/9eb76c2a-232b-4ddc-940c-826cc147e645" width="250" height="150" alt="Tela Cadastro" style="margin-right: 10px;">
@@ -55,7 +54,7 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
     <img src="https://github.com/user-attachments/assets/612f51cd-670e-4ac7-a54d-458594b3a6ad" width="250" height="150" alt="Perfil Usuário" style="margin-right: 10px;">
   </a>
   
-  <a href="https://github.com/user-attachments/assets/9ca64fb5-e128-4a50-b92e-8ed5cd51c6eb">
+  <a href="https://github.com/user-attachments/assets/ea8f647e-8770-48ed-85af-f7239bb8e3f5">
     <img src="https://github.com/user-attachments/assets/ea8f647e-8770-48ed-85af-f7239bb8e3f5" width="250" height="150" alt="Gráfico de Acessos">
   </a>
 </p>
@@ -87,7 +86,6 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
     <img src="https://github.com/user-attachments/assets/effe0a69-c771-42c8-a630-ec7d180c5a93" width="250" height="150" alt="Gráfico de Acessos">
   </a>
 </p>
-
 
 
 
