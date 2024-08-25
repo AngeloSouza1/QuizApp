@@ -56,8 +56,9 @@ O projeto QuizApp é desenvolvido utilizando as seguintes tecnologias e gems:
   </a>
   
   <a href="https://github.com/user-attachments/assets/9ca64fb5-e128-4a50-b92e-8ed5cd51c6eb">
-    <img src="https://github.com/user-attachments/assets/9ca64fb5-e128-4a50-b92e-8ed5cd51c6eb" width="250" height="150" alt="Gráfico de Acessos">
+    <img src="https://github.com/user-attachments/assets/ea8f647e-8770-48ed-85af-f7239bb8e3f5" width="250" height="150" alt="Gráfico de Acessos">
   </a>
+
 </p>
 
 <p align="center">
